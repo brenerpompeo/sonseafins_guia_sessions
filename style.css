@@ -1,0 +1,150 @@
+/* Definição da Cor Primária da Marca - AJUSTE AQUI */
+:root {
+  --brand-primary: #8B5CF6; /* Exemplo: Roxo Tailwind purple-500 */
+  --brand-primary-darker: #7c3aed; /* Exemplo: purple-600 para hover/focus */
+}
+
+/* Estilos base mínimos */
+body {
+  font-family: 'Inter', sans-serif;
+  /* Cores e transição base aplicadas via classes Tailwind no body e html */
+}
+
+/* Estilos Componentes Específicos */
+
+/* Botões de Navegação por Fase */
+.phase-nav-btn.active {
+  background-color: var(--brand-primary);
+  color: white;
+  font-weight: 600;
+}
+.dark .phase-nav-btn.active {
+  background-color: var(--brand-primary);
+  color: white;
+}
+/* Opcional: Adicionar foco visível consistente */
+.phase-nav-btn:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+}
+
+
+/* Cards de Tarefa - Efeito ao completar (via classe JS) */
+.task-card.task-completed label,
+.task-card.task-completed p,
+.task-card.task-completed details summary,
+.task-card.task-completed details div {
+  text-decoration: line-through;
+  opacity: 0.6; /* Ajustei um pouco a opacidade */
+  color: #6b7280; /* Cinza mais claro - light mode */
+}
+.dark .task-card.task-completed label,
+.dark .task-card.task-completed p,
+.dark .task-card.task-completed details summary,
+.dark .task-card.task-completed details div {
+    color: #9ca3af; /* Cinza mais claro - dark mode */
+}
+.task-card.task-completed {
+    background-color: #f9fafb; /* Fundo levemente diferente no light mode */
+    border-color: #e5e7eb;
+}
+.dark .task-card.task-completed {
+    background-color: #374151; /* Fundo levemente diferente no dark mode */
+    border-color: #4b5563;
+}
+
+
+/* Checkbox da Tarefa */
+.task-checkbox {
+  width: 1.25rem; height: 1.25rem; border-radius: 0.25rem;
+  border: 1px solid #9ca3af; /* Cor base da borda */
+  cursor: pointer;
+  accent-color: var(--brand-primary); /* Cor do check */
+  flex-shrink: 0; /* Evita que o checkbox encolha */
+  appearance: none; /* Remove aparência padrão para estilização customizada se desejado */
+  background-color: white; /* Fundo padrão */
+  position: relative; /* Para posicionar o marcador customizado */
+  vertical-align: middle; /* Alinha melhor com o texto */
+  margin-top: 0.125rem; /* Ajuste fino vertical */
+}
+.dark .task-checkbox {
+    border-color: #6b7280; /* Ajuste da cor da borda no dark mode */
+    background-color: #4b5563; /* Fundo no dark mode */
+}
+.task-checkbox:checked {
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+/* Marcador customizado (opcional, mas dá mais controle) */
+.task-checkbox:checked::before {
+    content: '✓';
+    display: block;
+    color: white;
+    font-size: 0.875rem; /* 14px */
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.25rem; /* Mesma altura do checkbox */
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
+.task-checkbox:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+}
+
+
+/* Estilo para <details> e <summary> com ícone Chevron */
+summary {
+  /* display: inline-flex; - Aplicado via Tailwind no HTML */
+  list-style: none; /* Remove default marker */
+  padding: 0.25rem 0; /* Adiciona um pouco de área de clique */
+}
+summary::-webkit-details-marker { display: none; } /* Chrome/Safari */
+summary .details-chevron {
+  margin-left: 0.25rem;
+  transition: transform 0.2s ease-in-out;
+}
+details[open] > summary .details-chevron {
+  transform: rotate(180deg);
+}
+/* Foco visível para o summary */
+summary:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+}
+
+
+/* Barra de Progresso */
+#progressBar {
+  background-color: var(--brand-primary);
+  transition: width 0.4s ease-in-out; /* Transição mais suave */
+  border-radius: 9999px; /* Garante borda arredondada */
+}
+
+/* Ajuste para garantir renderização Lucide e alinhamento */
+[data-lucide] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em; /* Ajuste fino de alinhamento vertical */
+    stroke-width: 2; /* Espessura padrão do Lucide */
+}
+
+/* Classe Utilitária para esconder elementos acessivelmente */
+.hidden-visually {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Classe para esconder/mostrar conteúdo das fases */
+.phase-content.hidden {
+    display: none;
+}

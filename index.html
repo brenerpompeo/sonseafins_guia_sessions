@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class=""> <!-- Classe 'dark' gerenciada via JS -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Título será atualizado dinamicamente via JS -->
+  <title>Sons & Sessions | Guia Prático</title>
+
+  <!-- Dependências -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos Customizados Externos -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
+  <!-- Container Principal -->
+  <div class="page-container mx-auto max-w-3xl px-4 sm:px-6 pb-24">
+
+    <!-- Cabeçalho -->
+    <header class="pt-8 pb-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="logo_sons_afins.svg" alt="Sons e Afins Logo" width="40" height="40" class="w-10 h-10"> <!-- Performance: width/height adicionados -->
+          <h1 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Sons e Afins</h1>
+        </div>
+        <button id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema" class="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--brand-primary)] focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 transition-colors">
+          <i data-lucide="sun" class="icon-sun block dark:hidden" aria-hidden="true"></i>
+          <i data-lucide="moon" class="icon-moon hidden dark:block" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="mt-8">
+        <!-- Título dinâmico -->
+        <h2 id="sessionTitle" class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Guia Prático: Sons & Sessions #<span id="sessionNumberTitle">?</span></h2>
+        <p class="mt-2 text-gray-600 dark:text-gray-300 max-w-lg">
+          Checklist interativo para planejamento e execução da gravação da sua temporada Sons & Sessions. Use como base replicável.
+        </p>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+      <!-- Bloco Introdutório -->
+      <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 text-white p-8 mb-10 shadow-lg">
+        <div class="relative z-10">
+          <!-- Título dinâmico -->
+          <h3 class="font-medium text-lg mb-2">Produção da Session #<span id="sessionNumberIntro">?</span></h3>
+          <p class="mb-4 text-gray-300">Este guia acompanha as fases de produção da sua gravação. Marque as tarefas concluídas para acompanhar o progresso.</p>
+        </div>
+        <div class="absolute inset-0 opacity-[0.03]" aria-hidden="true">
+             <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><path fill="currentColor" d="M400 0L400 800ZM0 400L800 400Z" stroke-width="1" stroke="currentColor" /></svg>
+         </div>
+      </div>
+
+      <!-- Barra de Progresso -->
+      <div class="mb-10">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Progresso da Produção</h3>
+          <span id="progressPercentage" class="text-sm font-medium text-gray-700 dark:text-gray-300">0%</span>
+        </div>
+        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full w-0"></div> <!-- Width controlado via JS -->
+        </div>
+      </div>
+
+      <!-- Navegação por Fases (Acessibilidade Aprimorada com role=tablist) -->
+      <nav class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10" role="tablist" aria-label="Fases da Produção">
+        <!-- Botão Ativo por Padrão -->
+        <button class="phase-nav-btn flex flex-col items-center justify-center p-3 py-2 border border-transparent rounded-lg text-sm text-center cursor-pointer transition-colors duration-200 bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 active"
+                data-phase="definicao-iniciacao"
+                role="tab"
+                aria-selected="true"
+                aria-controls="definicao-iniciacao-content"
+                id="tab-definicao">
+          <i data-lucide="clipboard-list" class="mb-1 w-5 h-5" aria-hidden="true"></i>
+          <span>Definição</span>
+        </button>
+        <button class="phase-nav-btn flex flex-col items-center justify-center p-3 py-2 border border-transparent rounded-lg text-sm text-center cursor-pointer transition-colors duration-200 bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                data-phase="planejamento-preparacao"
+                role="tab"
+                aria-selected="false"
+                aria-controls="planejamento-preparacao-content"
+                id="tab-planejamento">
+          <i data-lucide="calendar-check-2" class="mb-1 w-5 h-5" aria-hidden="true"></i>
+          <span>Planejamento</span>
+        </button>
+        <button class="phase-nav-btn flex flex-col items-center justify-center p-3 py-2 border border-transparent rounded-lg text-sm text-center cursor-pointer transition-colors duration-200 bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                data-phase="execucao"
+                role="tab"
+                aria-selected="false"
+                aria-controls="execucao-content"
+                id="tab-execucao">
+          <i data-lucide="video" class="mb-1 w-5 h-5" aria-hidden="true"></i>
+          <span>Execução</span>
+        </button>
+        <button class="phase-nav-btn flex flex-col items-center justify-center p-3 py-2 border border-transparent rounded-lg text-sm text-center cursor-pointer transition-colors duration-200 bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                data-phase="pos-producao-encerramento"
+                role="tab"
+                aria-selected="false"
+                aria-controls="pos-producao-encerramento-content"
+                id="tab-pos">
+          <i data-lucide="archive" class="mb-1 w-5 h-5" aria-hidden="true"></i>
+          <span>Pós + Encer.</span>
+        </button>
+      </nav>
+
+      <!-- Conteúdo das Fases (Controlado por JS com Acessibilidade Aprimorada) -->
+      <div id="phaseContentContainer">
+
+        <!-- ### FASE 1: DEFINIÇÃO E INICIAÇÃO ### -->
+        <section id="definicao-iniciacao-content" class="phase-content" role="tabpanel" aria-labelledby="tab-definicao" tabindex="0"> <!-- 'hidden' class será gerenciada por JS -->
+          <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 1: Definição e Iniciação</h3>
+            <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">~8-10 sem. antes</span>
+          </div>
+          <div class="space-y-5 task-list"> <!-- task-list adicionada para facilitar seleção JS -->
+            <!-- Tarefa 1.1 - Estrutura Refatorada com task-card -->
+            <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+              <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                <div class="flex-grow">
+                  <div class="flex items-start">
+                    <input type="checkbox" id="task-1-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                    <label for="task-1-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">1.1 Objetivos Específicos</label>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                    Definir metas claras para esta session.
+                  </p>
+                </div>
+                <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                  <details>
+                    <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                      Ver detalhes
+                      <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                      <ul class="list-disc pl-4 space-y-1">
+                        <li>Gravar Temporada #[X] (6 episódios 30 min).</li>
+                        <li>Capturar entrevistas (Artistas + [Y] Convidados).</li>
+                        <li>Capturar material para Sons & Docs #[Z].</li>
+                        <li>Testar elemento [Ex: nova interação, cenário].</li>
+                        <li>Alinhar com objetivos gerais da Sons e Afins.</li>
+                      </ul>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarefa 1.2 -->
+            <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+              <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                <div class="flex-grow">
+                  <div class="flex items-start">
+                    <input type="checkbox" id="task-1-2" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                    <label for="task-1-2" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">1.2 Confirmação Chave</label>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                    Bloquear data, local e talentos.
+                  </p>
+                </div>
+                <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                  <details>
+                    <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                      Ver detalhes
+                      <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                    </summary>
+                    <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                      <ul class="list-disc pl-4 space-y-1">
+                        <li>Confirmar Data e Horário exatos: [Data e Hora].</li>
+                        <li>Confirmar Local: [Nome do Local] - Acordo: [Link/Ref].</li>
+                        <li>Confirmar DJs: [Nome 1], [Nome 2], [Nome 3].</li>
+                        <li>Confirmar Moderador: [Nome].</li>
+                        <li>Confirmar MCs/Outros (se aplicável): [Nome(s)].</li>
+                      </ul>
+                    </div>
+                  </details>
+                </div>
+              </div>
+            </div>
+
+             <!-- Tarefa 1.3 -->
+            <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                 <div class="flex-grow">
+                   <div class="flex items-start">
+                     <input type="checkbox" id="task-1-3" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                     <label for="task-1-3" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">1.3 Orçamento Preliminar</label>
+                   </div>
+                   <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                     Estimativa inicial de custos.
+                   </p>
+                 </div>
+                 <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                   <details>
+                     <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                       Ver detalhes
+                       <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                     </summary>
+                     <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                       <ul class="list-disc pl-4 space-y-1">
+                         <li>Listar custos macro (Artistas, Técnica A/V, Local, etc.).</li>
+                         <li>Validar verba disponível vs. estimativa.</li>
+                         <li>Planilha Orçamento Preliminar: [Link].</li>
+                       </ul>
+                     </div>
+                   </details>
+                 </div>
+               </div>
+            </div>
+
+            <!-- Tarefa 1.4 -->
+            <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                 <div class="flex-grow">
+                   <div class="flex items-start">
+                     <input type="checkbox" id="task-1-4" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                     <label for="task-1-4" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">1.4 Definição Equipe Core</label>
+                   </div>
+                   <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                     Atribuir responsabilidades.
+                   </p>
+                 </div>
+                 <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                   <details>
+                     <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                       Ver detalhes
+                       <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                     </summary>
+                     <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                       <ul class="list-disc pl-4 space-y-1">
+                         <li>Resp. Produção Executiva: [Nome].</li>
+                         <li>Resp. Artístico/Curadoria: [Nome].</li>
+                         <li>Resp. Técnico (A/V): [Nome/Empresa].</li>
+                         <li>Resp. Comunicação/Convidados: [Nome].</li>
+                         <li>Resp. Financeiro: [Nome].</li>
+                       </ul>
+                     </div>
+                   </details>
+                 </div>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ### FASE 2: PLANEJAMENTO E PREPARAÇÃO ### -->
+        <section id="planejamento-preparacao-content" class="phase-content hidden" role="tabpanel" aria-labelledby="tab-planejamento" tabindex="0">
+           <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 2: Planejamento e Preparação</h3>
+             <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">~8-2 sem. antes</span>
+           </div>
+           <div class="space-y-5 task-list">
+             <!-- Tarefa 2.1 -->
+             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                 <div class="flex-grow">
+                   <div class="flex items-start">
+                     <input type="checkbox" id="task-2-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                     <label for="task-2-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.1 Cronograma Detalhado</label>
+                   </div>
+                   <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                     Definir todas as datas e prazos.
+                   </p>
+                 </div>
+                 <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                   <details>
+                     <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                       Ver detalhes
+                       <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                     </summary>
+                     <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                        <ul class="list-disc pl-4 space-y-1">
+                           <li>Datas VTs: [Data 1], [Data 2].</li>
+                           <li>Datas Testes Técnicos: [Data 3].</li>
+                           <li>Prazo Confirmação Casting Completo: [Data].</li>
+                           <li>Prazo Envio Convites: [Data].</li>
+                           <li>Prazo Definição Layout/Cenografia: [Data].</li>
+                           <li>Run-of-Show Dia Gravação: [Link/Doc].</li>
+                           <li>Prazos Pós-Produção: [Data Entrega Bruto], [Data Edição].</li>
+                           <li>Cronograma Completo: [Link].</li>
+                        </ul>
+                     </div>
+                   </details>
+                 </div>
+               </div>
+             </div>
+             <!-- Adicionar outras tarefas 2.2 a 2.11 aqui, seguindo a mesma estrutura e com IDs únicos (task-2-2, task-2-3...) -->
+             <div class="p-4 text-center text-gray-500 dark:text-gray-400 italic">Tarefas 2.2 a 2.11 a serem adicionadas aqui...</div>
+           </div>
+         </section>
+
+        <!-- ### FASE 3: EXECUÇÃO ### -->
+        <section id="execucao-content" class="phase-content hidden" role="tabpanel" aria-labelledby="tab-execucao" tabindex="0">
+           <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 3: Execução</h3>
+             <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">Dia da Gravação</span>
+           </div>
+           <div class="space-y-5 task-list">
+             <!-- Tarefa 3.1 -->
+             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                 <div class="flex-grow">
+                   <div class="flex items-start">
+                     <input type="checkbox" id="task-3-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                     <label for="task-3-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.1 Montagem e Testes Finais</label>
+                   </div>
+                   <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                     Preparar set e verificar tudo.
+                   </p>
+                 </div>
+                 <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                   <details>
+                     <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                       Ver detalhes
+                       <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                     </summary>
+                     <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                       <ul class="list-disc pl-4 space-y-1">
+                         <li>Equipe chegou às [Hora]. Montagem OK [Hora].</li>
+                         <li>Passagem Som OK. Teste Luz OK. Teste Câmeras/Gravação OK.</li>
+                         <li>Cenário/Arte OK.</li>
+                         <li>Comunicação interna OK.</li>
+                       </ul>
+                     </div>
+                   </details>
+                 </div>
+               </div>
+             </div>
+             <!-- Adicionar outras tarefas 3.2 a 3.7 aqui, seguindo a mesma estrutura e com IDs únicos (task-3-2, task-3-3...) -->
+             <div class="p-4 text-center text-gray-500 dark:text-gray-400 italic">Tarefas 3.2 a 3.7 a serem adicionadas aqui...</div>
+           </div>
+         </section>
+
+        <!-- ### FASE 4: PÓS-PRODUÇÃO E ENCERRAMENTO ### -->
+        <section id="pos-producao-encerramento-content" class="phase-content hidden" role="tabpanel" aria-labelledby="tab-pos" tabindex="0">
+           <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 4: Pós-Produção e Encerramento</h3>
+             <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">Semanas/Meses após</span>
+           </div>
+           <div class="space-y-5 task-list">
+             <!-- Tarefa 4.1 -->
+             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                  <div class="flex-grow">
+                    <div class="flex items-start">
+                      <input type="checkbox" id="task-4-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                      <label for="task-4-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.1 Backup e Organização Bruto</label>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                     Salvar e catalogar material.
+                    </p>
+                  </div>
+                  <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                    <details>
+                      <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                        Ver detalhes
+                        <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                      </summary>
+                      <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                        <ul class="list-disc pl-4 space-y-1">
+                          <li>Material A/V backupeado em [Local 1] e [Local 2].</li>
+                          <li>Arquivos organizados (câmera/fonte/dia).</li>
+                          <li>Planilha Logs/Minutagem (se houver): [Link].</li>
+                          <li>Status: Concluído [Data].</li>
+                        </ul>
+                      </div>
+                    </details>
+                  </div>
+                </div>
+             </div>
+             <!-- Adicionar outras tarefas 4.2 a 4.6 aqui, seguindo a mesma estrutura e com IDs únicos (task-4-2, task-4-3...) -->
+             <div class="p-4 text-center text-gray-500 dark:text-gray-400 italic">Tarefas 4.2 a 4.6 a serem adicionadas aqui...</div>
+           </div>
+         </section>
+      </div> <!-- Fim de #phaseContentContainer -->
+
+      <!-- Ferramentas da Produção -->
+      <section class="mt-16 mb-10"> <!-- Aumentei a margem superior -->
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-5">Ferramentas da Produção</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Card Ferramenta: Gestão -->
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800 hover:shadow-sm transition-shadow">
+                 <div class="flex items-center gap-3">
+                   <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex-shrink-0">
+                     <i data-lucide="list-checks" class="w-5 h-5" aria-hidden="true"></i>
+                   </div>
+                   <div>
+                     <h4 class="font-medium text-gray-800 dark:text-gray-100">Gestão & Planejamento</h4>
+                     <p class="text-sm text-gray-600 dark:text-gray-400">Organização de tarefas e docs</p>
+                   </div>
+                 </div>
+                 <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
+                   <ul class="list-disc pl-5 space-y-1">
+                     <li>Google Workspace (Docs, Sheets)</li>
+                     <li>Trello / Asana / Notion (Tarefas)</li>
+                     <li>WhatsApp / Slack (Comunicação)</li>
+                     <li>Este Guia Prático!</li>
+                   </ul>
+                 </div>
+               </div>
+              <!-- Card Ferramenta: Audiovisual -->
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800 hover:shadow-sm transition-shadow">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex-shrink-0">
+                    <i data-lucide="camera" class="w-5 h-5" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800 dark:text-gray-100">Produção Audiovisual</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Equipamentos e Software</p>
+                  </div>
+                </div>
+                <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>Câmeras: [Modelo(s)]</li>
+                    <li>Gravadores Áudio: [Modelo(s)]</li>
+                    <li>Software Edição Vídeo: [Software]</li>
+                    <li>Software Edição Áudio (Pós): [Software]</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Card Ferramenta: Design -->
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800 hover:shadow-sm transition-shadow">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex-shrink-0">
+                    <i data-lucide="pen-tool" class="w-5 h-5" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800 dark:text-gray-100">Design & Conteúdo</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Criação de materiais visuais</p>
+                  </div>
+                </div>
+                <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>Canva / Figma / Adobe Suite</li>
+                    <li>Ferramentas de Gerenciamento Redes Sociais</li>
+                    <li>Plataformas Distribuição (YT, Spotify)</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- Card Ferramenta: Financeiro -->
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800 hover:shadow-sm transition-shadow">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 flex-shrink-0">
+                    <i data-lucide="dollar-sign" class="w-5 h-5" aria-hidden="true"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800 dark:text-gray-100">Financeiro</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Controle de custos</p>
+                  </div>
+                </div>
+                <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <li>Planilhas (Google Sheets, Excel)</li>
+                    <li>Software gestão financeira (se houver)</li>
+                    <li>Controle de pagamentos / recebimentos</li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Formulário de Anotações -->
+      <section class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 mb-10 shadow-sm">
+        <!-- Título dinâmico -->
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Anotações da Session #<span id="sessionNumberNotesTitle">?</span></h3>
+        <div>
+          <label for="projectNotes" class="sr-only">Anotações da Session</label>
+          <textarea id="projectNotes" name="projectNotes" rows="5"
+                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm
+                           bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
+                           focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)] focus:border-[var(--brand-primary)]
+                           text-sm placeholder-gray-400 dark:placeholder-gray-500"
+                    placeholder="Adicione suas ideias, pendências, contatos importantes e próximos passos específicos para esta session..."
+                    aria-label="Anotações da Session"></textarea> <!-- aria-label simplificado, contexto dado pelo h3 -->
+        </div>
+        <div class="flex justify-end items-center mt-3 gap-4">
+            <p id="notesStatus" class="text-xs text-gray-500 dark:text-gray-400 h-4 flex-grow"></p> <!-- Status save via JS -->
+            <button id="saveNotes"
+                    class="px-4 py-2 text-sm font-medium rounded-md transition-opacity flex items-center gap-2 whitespace-nowrap
+                           bg-gray-800 text-white hover:bg-gray-700
+                           dark:bg-[var(--brand-primary)] dark:text-white dark:hover:opacity-90
+                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--brand-primary)] focus:ring-offset-gray-100 dark:focus:ring-offset-gray-800
+                           disabled:opacity-50 disabled:cursor-not-allowed"
+                    aria-label="Salvar Anotações">
+              <i data-lucide="save" class="w-4 h-4" aria-hidden="true"></i> Salvar Anotações
+            </button>
+        </div>
+      </section>
+
+      <!-- Lembretes Importantes -->
+      <section class="mb-10">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="lightbulb" class="text-yellow-500 dark:text-yellow-400 w-5 h-5 flex-shrink-0" aria-hidden="true"></i>
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Lembretes Importantes</h3>
+        </div>
+        <div class="bg-yellow-50 dark:bg-gray-800 border border-yellow-200 dark:border-gray-700 rounded-lg p-5 text-sm text-gray-700 dark:text-gray-300 shadow-sm">
+          <ul class="space-y-3">
+            <!-- Uso de <strong> para ênfase semântica -->
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">01</span><span><strong>Comunicação é chave:</strong> Mantenha a equipe, artistas e local alinhados sempre. Overcommunicate!</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">02</span><span><strong>Checklists salvam vidas:</strong> Use as VTs e testes para evitar surpresas no dia da gravação.</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">03</span><span><strong>Plano B (e C):</strong> Tenha contingências claras para riscos técnicos, logísticos e até de pessoal.</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">04</span><span><strong>Documente TUDO:</strong> Orçamentos, acordos, cronogramas e, principalmente, <strong>lições aprendidas</strong>.</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">05</span><span><strong>Celebre as vitórias:</strong> Reconheça o esforço da equipe após cada session bem-sucedida!</span></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="text-center text-sm text-gray-500 dark:text-gray-400 mt-12 border-t border-gray-200 dark:border-gray-700 pt-6">
+      <p>Guia de Produção Interno - Sons e Afins</p>
+      <!-- Conteúdo dinâmico -->
+      <p>Versão <span id="appVersion">[Versão Atual]</span> - Atualizado em <span id="lastUpdated">[Data Atualização]</span></p>
+    </footer>
+  </div>
+
+  <!-- Script Externo com Lógica -->
+  <script src="script.js" defer></script>
+
+</body>
+</html>
