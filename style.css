@@ -7,7 +7,7 @@
 /* Estilos base mínimos */
 body {
   font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased; /* Melhora renderização de fontes em alguns browsers */
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Cores e transição base aplicadas via classes Tailwind no body e html */
 }
@@ -22,20 +22,31 @@ body {
 }
 .dark .phase-nav-btn.active {
   background-color: var(--brand-primary);
-  color: white; /* Garante contraste no dark mode */
+  color: white;
 }
 /* Foco visível consistente e acessível */
-.phase-nav-btn:focus-visible {
-    outline: 3px solid var(--brand-primary-darker); /* Mais contraste */
+.phase-nav-btn:focus-visible,
+button:focus-visible, /* Estilo de foco geral para botões */
+summary:focus-visible,
+input[type="checkbox"]:focus-visible,
+textarea:focus-visible,
+a:focus-visible { /* Estilo de foco geral */
+    outline: 3px solid var(--brand-primary-darker);
     outline-offset: 2px;
-    border-radius: 0.5rem; /* Match Tailwind's rounded-lg */
+    border-radius: 0.375rem; /* Tailwind's rounded-md */
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3); /* Adiciona um brilho suave */
 }
+/* Ajuste específico para inputs/textarea */
+textarea:focus-visible, input[type="checkbox"]:focus-visible {
+     box-shadow: none; /* Remove sombra duplicada se já houver ring */
+}
+
 
 /* Cards de Tarefa - Efeito ao completar (via classe JS) */
 .task-card.task-completed {
-    background-color: #f9fafb; /* Cinza bem claro - light mode */
-    border-color: #e5e7eb; /* Cinza mais claro - light */
-    opacity: 0.7; /* Leve opacidade geral */
+    background-color: #f9fafb;
+    border-color: #e5e7eb;
+    opacity: 0.75; /* Um pouco mais visível que antes */
 }
 .task-card.task-completed label,
 .task-card.task-completed p,
@@ -43,82 +54,67 @@ body {
 .task-card.task-completed details div,
 .task-card.task-completed ul {
   text-decoration: line-through;
-  text-decoration-color: #9ca3af; /* Cor do risco - light */
-  color: #6b7280; /* Texto mais apagado - light */
-  opacity: 0.8; /* Opacidade adicional no texto */
+  text-decoration-color: #9ca3af;
+  color: #6b7280;
+  opacity: 0.85; /* Levemente mais visível */
 }
 /* Dark Mode - Tarefa Completa */
 .dark .task-card.task-completed {
-    background-color: #374151; /* Cinza escuro - dark mode */
-    border-color: #4b5563; /* Borda cinza escura - dark */
-    opacity: 0.6; /* Mais opaco no dark */
+    background-color: #374151;
+    border-color: #4b5563;
+    opacity: 0.65;
 }
 .dark .task-card.task-completed label,
 .dark .task-card.task-completed p,
 .dark .task-card.task-completed details summary,
 .dark .task-card.task-completed details div,
 .dark .task-card.task-completed ul {
-    text-decoration-color: #6b7280; /* Cor do risco - dark */
-    color: #9ca3af; /* Texto mais apagado - dark */
-    opacity: 0.8;
+    text-decoration-color: #6b7280;
+    color: #9ca3af;
+    opacity: 0.85;
 }
+
 
 /* Checkbox da Tarefa */
 .task-checkbox {
-  /* Tamanho e Borda */
   width: 1.25rem; height: 1.25rem; border-radius: 0.25rem;
-  border: 2px solid #9ca3af; /* Borda um pouco mais grossa para destaque */
+  border: 2px solid #9ca3af;
   background-color: white;
-  /* Posicionamento e Comportamento */
   cursor: pointer;
-  flex-shrink: 0; /* Não encolher */
-  appearance: none; /* Remover aparência padrão */
+  flex-shrink: 0;
+  appearance: none;
   -webkit-appearance: none;
-  position: relative; /* Para o marcador 'check' */
+  position: relative;
   vertical-align: middle;
-  margin-top: 0.125rem; /* Ajuste fino */
+  margin-top: 0.125rem;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 .dark .task-checkbox {
     border-color: #6b7280;
     background-color: #4b5563;
 }
-.task-checkbox:checked {
-    background-color: var(--brand-primary);
-    border-color: var(--brand-primary);
+/* Usar accent-color é mais simples e moderno */
+.task-checkbox {
+  accent-color: var(--brand-primary);
+  /* Remove a necessidade do ::before para o check padrão */
+  appearance: checkbox; /* Garante que funcione como checkbox padrão */
+  -webkit-appearance: checkbox;
 }
-/* Marcador 'check' customizado */
-.task-checkbox:checked::before {
-    content: '✓';
-    display: block;
-    color: white;
-    font-size: 0.9rem; /* Ajuste tamanho check */
-    font-weight: 700; /* Bold */
-    text-align: center;
-    line-height: 1.1rem; /* Centralizar verticalmente */
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-}
-/* Foco visível no checkbox */
-.task-checkbox:focus-visible {
-    outline: 3px solid var(--brand-primary-darker);
-    outline-offset: 2px;
-}
-/* Simplifica a cor do check usando accent-color se preferir (remover :before e ajustar :checked) */
-/* .task-checkbox { accent-color: var(--brand-primary); } */
+/* Estilo quando marcado (se não usar accent-color) */
+/* .task-checkbox:checked { background-color: var(--brand-primary); border-color: var(--brand-primary); } */
+/* .task-checkbox:checked::before { ... } */
 
-/* Estilo para <details> e <summary> com ícone Chevron */
+
+/* Estilo para <details> e <summary> */
 summary {
-  list-style: none; /* Remove marcador padrão */
+  list-style: none;
   padding: 0.25rem 0;
-  cursor: pointer; /* Indicador de clicável */
-  display: inline-flex; /* Alinha texto e ícone */
+  cursor: pointer;
+  display: inline-flex;
   align-items: center;
-  transition: color 0.2s ease; /* Suaviza hover */
+  transition: color 0.2s ease;
 }
-/* Remover marcador padrão em todos os browsers */
-summary::-webkit-details-marker { display: none; }
-summary::marker { display: none; }
+summary::-webkit-details-marker, summary::marker { display: none; }
 summary .details-chevron {
   margin-left: 0.25rem;
   transition: transform 0.2s ease-in-out;
@@ -126,45 +122,77 @@ summary .details-chevron {
 details[open] > summary .details-chevron {
   transform: rotate(180deg);
 }
-/* Foco visível para o summary */
-summary:focus-visible {
-    outline: 3px solid var(--brand-primary-darker);
-    outline-offset: 2px;
-    border-radius: 0.25rem;
-    /* Opcional: mudar cor no foco */
-    /* color: var(--brand-primary); */
+/* Estilo para o conteúdo dentro de details (prose para formatação) */
+details > div {
+  /* Tailwind's prose classes aplicadas no HTML para estilizar HTML interno */
+  line-height: 1.6; /* Melhora legibilidade */
 }
+
+
+/* Botões de Ação Dentro do Card */
+.edit-task-details-btn, .delete-task-btn {
+    background: none;
+    border: none;
+    padding: 0.1rem 0.3rem; /* Pequeno padding */
+    margin: 0; /* Reset margin */
+    cursor: pointer;
+    font-size: 0.75rem; /* Equivalente a text-xs */
+    line-height: 1rem;
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: 0.25rem; /* rounded-sm */
+    display: inline-flex; /* Alinhar ícone se adicionar */
+    align-items: center;
+    gap: 0.2rem;
+}
+.edit-task-details-btn:hover, .delete-task-btn:hover {
+    text-decoration: underline;
+}
+.edit-task-details-btn {
+   color: var(--brand-primary);
+   margin-left: -0.3rem; /* Ajuste para alinhar melhor com a borda */
+}
+.delete-task-btn {
+    color: #ef4444; /* red-500 */
+}
+.dark .delete-task-btn {
+     color: #f87171; /* red-400 */
+}
+.edit-task-details-btn:hover {
+    background-color: rgba(139, 92, 246, 0.1); /* bg-purple-100/50 */
+}
+.delete-task-btn:hover {
+    background-color: rgba(239, 68, 68, 0.1); /* bg-red-100/50 */
+}
+
 
 /* Barra de Progresso */
 #progressBar {
   background-color: var(--brand-primary);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição suave e fluida */
-  border-radius: 9999px; /* Garante borda arredondada */
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 9999px;
 }
 
 /* Ajuste para Ícones Lucide */
 [data-lucide] {
-    display: inline-block; /* Garante comportamento de bloco */
-    width: 1em; /* Usa tamanho da fonte como base */
+    display: inline-block;
+    width: 1em;
     height: 1em;
-    vertical-align: -0.15em; /* Ajuste fino alinhamento vertical */
+    vertical-align: -0.15em;
     stroke-width: 2;
 }
 
-/* Classe Utilitária para esconder visualmente mas manter para leitores de tela */
+/* Classe Utilitária Sr Only */
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
 }
 
-/* Classe para esconder/mostrar conteúdo das fases (usada pelo JS) */
-.phase-content.hidden {
-    display: none;
-}
+/* Classe para esconder/mostrar conteúdo das fases */
+.phase-content.hidden { display: none; }
+
+/* Estilo para placeholder enquanto carrega tarefas */
+.task-list-placeholder { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+
+/* Melhorar aparência do prompt (Não customizável diretamente via CSS) */
+/* A alternativa é usar um modal customizado para edição */
