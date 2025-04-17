@@ -1,13 +1,14 @@
+--- START OF FILE common.js ---
+
 // --- Constantes Compartilhadas ---
 const LS_KEY_THEME = 'themePreference';
-const LS_KEY_SESSION_INDEX = 'session_index';
-const LS_KEY_TASKS_PREFIX = 'session_tasks_';
-const LS_KEY_DELETED_TASKS_PREFIX = 'session_deleted_tasks_';
-const LS_KEY_NOTES_PREFIX = 'session_notes_';
+const LS_KEY_SESSION_INDEX = 'session_index'; // Armazena [{id, name, createdAt}, ...]
+const LS_KEY_TASKS_PREFIX = 'session_tasks_'; // session_tasks_{sessionId} -> [{id, phase, title, ...}, ...]
+const LS_KEY_DELETED_TASKS_PREFIX = 'session_deleted_tasks_'; // session_deleted_tasks_{sessionId} -> [{id, phase, title, ...}, ...]
+const LS_KEY_NOTES_PREFIX = 'session_notes_'; // session_notes_{sessionId} -> [{id, content, createdAt}, ...]
 const DEFAULT_SESSION_ID = 'default_session'; // Usado como fallback ou para lógica específica
 
-// --- Template Padrão de Tarefas ---
-// Cada tarefa terá um ID único gerado com crypto.randomUUID() na criação da session
+// --- Template Padrão de Tarefas (SEM IDs, eles são gerados na criação) ---
 const defaultTasksTemplate = [
     // Fase 1: Definição e Iniciação
     { phase: 'definicao-iniciacao', title: '1.1 Objetivos Específicos', description: 'Definir metas claras para esta session.', details: '<ul><li>Ex: Gravar Temporada #[X] (6 episódios 30 min).</li><li>Ex: Capturar entrevistas (Artistas + [Y] Convidados).</li><li>Ex: Link Metas: <a href="#" target="_blank" class="text-[var(--brand-primary)] hover:underline">[Adicionar Link]</a></li></ul>' },
@@ -44,56 +45,145 @@ const defaultTasksTemplate = [
     { phase: 'pos-producao-encerramento', title: '4.7 Pagamentos Finais e Fechamento Financeiro', description: 'Realizar últimos pagamentos e conciliar o orçamento final.', details: '<ul><li>Pagamentos Finais: OK [Datas]</li><li>Conciliação Orçamento: <a href="#" target="_blank" class="text-[var(--brand-primary)] hover:underline">[Link Planilha Final]</a></li><li>Relatório Financeiro Final: [DD/MM]</li></ul>' },
     { phase: 'pos-producao-encerramento', title: '4.8 Reunião Pós-Mortem (Lições Aprendidas)', description: 'Analisar o que funcionou, o que não funcionou, e documentar.', details: '<ul><li>Data Reunião: [DD/MM]</li><li>Registro/Ata: <a href="#" target="_blank" class="text-[var(--brand-primary)] hover:underline">[Link]</a></li><li>Lições Aprendidas: <a href="#" target="_blank" class="text-[var(--brand-primary)] hover:underline">[Link Doc]</a></li><li>Melhorias Próx. Session: Definidas</li></ul>' },
     { phase: 'pos-producao-encerramento', title: '4.9 Arquivamento Final do Projeto', description: 'Organizar e armazenar toda a documentação e material final.', details: '<ul><li>Pasta Digital Final: <a href="#" target="_blank" class="text-[var(--brand-primary)] hover:underline">[Localização/Link]</a></li><li>Brutos Arquivados: [Localização]</li><li>Masters Arquivados: [Localização]</li><li>Docs Arquivados: OK</li></ul>' },
-].map(task => ({...task, completed: false })); // Garante que completed seja false por padrão
+];
 
 
 // --- Funções de Gerenciamento de Dados (LocalStorage) ---
 function getAllSessions() { try { return JSON.parse(localStorage.getItem(LS_KEY_SESSION_INDEX) || '[]'); } catch (e) { console.error("Error parsing session index:", e); localStorage.removeItem(LS_KEY_SESSION_INDEX); return []; } }
 function saveAllSessions(sessions) { try { localStorage.setItem(LS_KEY_SESSION_INDEX, JSON.stringify(sessions)); } catch (e) { console.error("Error saving session index:", e); showToast('Erro ao salvar índice!', 'error'); } }
-function loadSessionTasks(sessionId, includeDeleted = false) { const key = `${LS_KEY_TASKS_PREFIX}${sessionId}`; try { const storedTasks = localStorage.getItem(key); let tasks = storedTasks ? JSON.parse(storedTasks) : []; if (!storedTasks && sessionId !== DEFAULT_SESSION_ID) { console.log(`Initializing tasks for session ${sessionId} from template.`); tasks = defaultTasksTemplate.map(task => ({ ...task, id: crypto.randomUUID(), completed: false })); saveSessionTasks(sessionId, tasks); } return includeDeleted ? tasks : tasks; } catch (e) { console.error(`Error loading tasks for session ${sessionId}:`, e); localStorage.removeItem(key); showToast(`Erro ao carregar tarefas!`, 'error'); return []; } }
+function loadSessionTasks(sessionId) {
+    const key = `${LS_KEY_TASKS_PREFIX}${sessionId}`;
+    try {
+        const storedTasks = localStorage.getItem(key);
+        let tasks = storedTasks ? JSON.parse(storedTasks) : [];
+
+        // Se não há tarefas salvas E NÃO é a session default, inicializa com o template
+        if (!storedTasks && sessionId !== DEFAULT_SESSION_ID) {
+            console.log(`Initializing tasks for session ${sessionId} from template.`);
+            // Gera IDs únicos para cada tarefa do template
+            tasks = defaultTasksTemplate.map(task => ({
+                ...task,
+                id: crypto.randomUUID(), // Gera ID único aqui
+                completed: false // Garante que o padrão é não completado
+            }));
+            saveSessionTasks(sessionId, tasks); // Salva as tarefas recém-criadas
+        }
+         // Garante que todas as tarefas carregadas tenham um ID, se não tiver, gera um (fallback de segurança)
+        tasks.forEach(task => { if (!task.id) task.id = crypto.randomUUID(); });
+
+        return tasks;
+    } catch (e) {
+        console.error(`Error loading tasks for session ${sessionId}:`, e);
+        localStorage.removeItem(key);
+        showToast(`Erro ao carregar tarefas! Resetando tarefas para ${sessionId}.`, 'error');
+        // Se der erro no parse, TENTA recriar do template se não for a default
+        if (sessionId !== DEFAULT_SESSION_ID) {
+            const fallbackTasks = defaultTasksTemplate.map(task => ({ ...task, id: crypto.randomUUID(), completed: false }));
+            saveSessionTasks(sessionId, fallbackTasks);
+            return fallbackTasks;
+        }
+        return []; // Retorna vazio se for a default ou se a recriação falhar
+    }
+}
 function saveSessionTasks(sessionId, tasks) { const key = `${LS_KEY_TASKS_PREFIX}${sessionId}`; try { localStorage.setItem(key, JSON.stringify(tasks)); } catch (e) { console.error(`Error saving tasks:`, e); showToast(`Erro ao salvar tarefas!`, 'error'); } }
 function loadDeletedSessionTasks(sessionId) { const key = `${LS_KEY_DELETED_TASKS_PREFIX}${sessionId}`; try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { console.error(`Error loading deleted tasks:`, e); localStorage.removeItem(key); showToast('Erro ao carregar tarefas excluídas!', 'error'); return []; } }
 function saveDeletedSessionTasks(sessionId, deletedTasks) { const key = `${LS_KEY_DELETED_TASKS_PREFIX}${sessionId}`; try { localStorage.setItem(key, JSON.stringify(deletedTasks)); } catch (e) { console.error(`Error saving deleted tasks:`, e); showToast('Erro ao salvar tarefas excluídas!', 'error'); } }
-function loadSessionNotes(sessionId) { const key = `${LS_KEY_NOTES_PREFIX}${sessionId}`; try { return localStorage.getItem(key) || ''; } catch (e) { console.error(`Error loading notes:`, e); return ''; } }
-function saveSessionNotes(sessionId, notes) { const key = `${LS_KEY_NOTES_PREFIX}${sessionId}`; try { localStorage.setItem(key, notes); return true; } catch (e) { console.error(`Error saving notes:`, e); showToast(`Erro ao salvar notas!`, 'error'); return false; } }
+function loadSessionNotes(sessionId) { // Carrega array de notas
+    const key = `${LS_KEY_NOTES_PREFIX}${sessionId}`;
+    try {
+        const storedNotes = localStorage.getItem(key);
+        return storedNotes ? JSON.parse(storedNotes) : [];
+    } catch (e) {
+        console.error(`Error loading/parsing notes for session ${sessionId}:`, e);
+        localStorage.removeItem(key);
+        return [];
+    }
+}
+function saveSessionNotes(sessionId, notesArray) { // Salva array de notas
+    const key = `${LS_KEY_NOTES_PREFIX}${sessionId}`;
+    try {
+        if (!Array.isArray(notesArray)) {
+            console.error("Attempted to save non-array as notes:", notesArray);
+            return false;
+        }
+        localStorage.setItem(key, JSON.stringify(notesArray));
+        return true;
+    } catch (e) {
+        console.error(`Error saving notes array:`, e);
+        showToast(`Erro ao salvar notas!`, 'error');
+        return false;
+    }
+}
 
 
 // --- Funções Auxiliares de UI ---
 function showToast(message, type = 'info') {
-    // Tenta encontrar o elemento de status (pode não existir na dashboard)
-    const statusElement = document.getElementById('notesStatus');
-    if (!statusElement) {
-        console.log(`Toast [${type}]: ${message}`); // Fallback para console
-        return;
+    const statusElement = document.getElementById('notesStatus'); // Assume que existe em session.html
+    const dashboardElement = document.getElementById('sessionList'); // Ou usa um elemento da dashboard como fallback
+
+    let targetElement = statusElement;
+    let isDashboardToast = false;
+
+    if (!targetElement && dashboardElement) {
+        targetElement = document.createElement('div');
+        targetElement.id = 'dashboardToast';
+        targetElement.className = 'fixed bottom-4 right-4 p-3 rounded-md shadow-lg z-50 text-sm font-medium';
+        dashboardElement.parentNode.insertBefore(targetElement, dashboardElement.nextSibling);
+        isDashboardToast = true;
+    } else if (!targetElement && !dashboardElement) {
+        console.log(`Toast [${type}]: ${message}`);
+        return; // Não pode mostrar toast
     }
-    let className = 'text-xs h-4 flex-grow ';
+
+    let baseClasses = isDashboardToast ? targetElement.className : 'text-xs h-4 flex-grow ';
+    let colorClasses = '';
+
     switch (type) {
-        case 'success': className += 'text-green-600 dark:text-green-400'; break;
-        case 'error': className += 'text-red-600 dark:text-red-400'; break;
-        default: className += 'text-blue-600 dark:text-blue-400'; // Info
+        case 'success': colorClasses = 'bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300'; break;
+        case 'error': colorClasses = 'bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-300'; break;
+        default: colorClasses = 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300'; // Info
     }
-    statusElement.textContent = message;
-    statusElement.className = className;
-    // Limpa após um tempo
-    setTimeout(() => { if (statusElement.textContent === message) statusElement.textContent = ''; }, 3500);
+
+    targetElement.className = `${baseClasses} ${colorClasses}`;
+    targetElement.textContent = message;
+
+    setTimeout(() => {
+        if (targetElement.textContent === message) {
+            if (isDashboardToast) {
+                targetElement.remove();
+            } else {
+                targetElement.textContent = '';
+                targetElement.className = 'text-xs h-4 flex-grow'; // Reset class
+            }
+        }
+    }, 3500);
 }
+
 
 function updateFooterInfo() {
     const yearSpan = document.getElementById('currentYear'); // Para dashboard
     const lastUpdatedSpan = document.getElementById('lastUpdated'); // Para session.html
-    const appVersionSpan = document.getElementById('appVersion'); // Para session.html
+    const appVersionSpan = document.getElementById('appVersion'); // Para ambos
 
-    if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
     if (lastUpdatedSpan) {
-        const today = new Date();
-        const day = String(today.getDate()).padStart(2, '0');
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const year = today.getFullYear();
-        lastUpdatedSpan.textContent = `${day}/${month}/${year}`;
+        // Pega a data do próprio arquivo HTML (se disponível) ou usa hoje
+        let fileModDate = document.lastModified;
+        let formattedDate = 'Data Indisponível';
+        if (fileModDate) {
+            try {
+                const d = new Date(fileModDate);
+                const day = String(d.getDate()).padStart(2, '0');
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const year = d.getFullYear();
+                formattedDate = `${day}/${month}/${year}`;
+            } catch (e) { /* ignora erro de data */}
+        }
+        lastUpdatedSpan.textContent = `Atualizado em ${formattedDate}`;
     }
      if (appVersionSpan) {
-         // Definir a versão atual aqui (pode ser hardcoded ou vir de outro lugar)
+         // Definir a versão atual aqui
          appVersionSpan.textContent = "1.2.0";
      }
 }
@@ -101,8 +191,11 @@ function updateFooterInfo() {
 // --- Funções de Tema ---
 function applyTheme(theme) {
     const htmlElement = document.documentElement;
-    const sunIcon = document.querySelector('#themeToggle .icon-sun');
-    const moonIcon = document.querySelector('#themeToggle .icon-moon');
+    const themeToggleButton = document.getElementById('themeToggle'); // Busca em qualquer página
+    if (!themeToggleButton) return; // Sai se não houver botão de tema
+
+    const sunIcon = themeToggleButton.querySelector('.icon-sun');
+    const moonIcon = themeToggleButton.querySelector('.icon-moon');
 
     if (theme === 'dark') {
       htmlElement.classList.add('dark');
@@ -113,7 +206,7 @@ function applyTheme(theme) {
       sunIcon?.classList.replace('hidden', 'block');
       moonIcon?.classList.replace('block', 'hidden');
     }
-     // Re-inicializa icones LDEPOIS de mudar a classe dark/light
+     // Re-inicializa icones Lucide DEPOIS de mudar a classe dark/light
      if (typeof lucide !== 'undefined') {
         try { lucide.createIcons(); } catch (e) { console.error("Lucide error on theme change:", e); }
     }
@@ -126,6 +219,7 @@ function toggleTheme() {
         localStorage.setItem(LS_KEY_THEME, currentTheme);
     } catch (error) {
         console.error("Failed to save theme preference:", error);
+        showToast('Erro ao salvar tema!', 'error');
     }
     applyTheme(currentTheme);
   }
@@ -145,6 +239,7 @@ function loadTheme() {
 function getCurrentSessionIdFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const urlSessionId = urlParams.get('session');
-    // Retorna null se não encontrar ou for vazio, para forçar redirecionamento
+    // Retorna null se não encontrar ou for vazio, para forçar redirecionamento na página da session
     return urlSessionId && urlSessionId.trim() !== '' ? urlSessionId.trim() : null;
 }
+--- END OF FILE common.js ---
