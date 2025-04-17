@@ -1,5 +1,3 @@
---- START OF FILE style.css ---
-
 /* :root e body */
 :root {
     --brand-primary: #8B5CF6; /* Exemplo: Roxo Tailwind purple-500 */
@@ -238,5 +236,3 @@ details > div.details-content {
 #dashboardToast {
     /* Posicionamento fixo, cores e texto via JS */
 }
-
---- END OF FILE style.css ---
