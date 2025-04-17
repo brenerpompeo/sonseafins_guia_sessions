@@ -1,5 +1,3 @@
---- START OF FILE dashboard.js ---
-
 document.addEventListener('DOMContentLoaded', () => {
     const sessionListContainer = document.getElementById('sessionList');
     const createSessionBtn = document.getElementById('createSessionBtn');
@@ -178,4 +176,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Executa a inicialização da dashboard
     initializeDashboard();
 });
---- END OF FILE dashboard.js ---
