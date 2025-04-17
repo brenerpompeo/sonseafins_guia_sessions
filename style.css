@@ -1,64 +1,242 @@
-/* :root e body (mantidos) */
-:root { --brand-primary: #8B5CF6; --brand-primary-darker: #7c3aed; }
-body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+--- START OF FILE style.css ---
 
-/* Foco Visível Global (mantido) */
-button:focus-visible, summary:focus-visible, input[type="checkbox"]:focus-visible,
-textarea:focus-visible, a:focus-visible { outline: 3px solid var(--brand-primary-darker); outline-offset: 2px; border-radius: 0.375rem; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3); }
-textarea:focus-visible, input[type="checkbox"]:focus-visible { box-shadow: none; }
-.phase-nav-btn:focus-visible { border-radius: 0.5rem; } /* Ajuste específico */
+/* :root e body */
+:root {
+    --brand-primary: #8B5CF6; /* Exemplo: Roxo Tailwind purple-500 */
+    --brand-primary-darker: #7c3aed; /* Exemplo: purple-600 para hover/focus */
+}
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Cores base aplicadas via Tailwind no body */
+}
+
+/* Foco Visível Global Aprimorado */
+button:focus-visible,
+summary:focus-visible,
+input[type="checkbox"]:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--brand-primary-darker); /* Cor mais escura para destaque */
+    outline-offset: 2px;
+    border-radius: 0.375rem; /* Tailwind 'rounded-md' */
+    /* Sombra sutil para reforçar */
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
+}
+/* Remove a sombra externa padrão em inputs e textareas no foco, pois o anel é suficiente */
+textarea:focus-visible, input[type="checkbox"]:focus-visible {
+    box-shadow: none;
+}
+/* Arredondamento diferente para botões de fase */
+.phase-nav-btn:focus-visible {
+    border-radius: 0.5rem; /* Tailwind 'rounded-lg' */
+}
 
 
-/* Botões de Navegação por Fase (mantido) */
-.phase-nav-btn.active { background-color: var(--brand-primary); color: white; font-weight: 600; }
-.dark .phase-nav-btn.active { background-color: var(--brand-primary); color: white; }
+/* Botões de Navegação por Fase */
+.phase-nav-btn.active {
+    background-color: var(--brand-primary);
+    color: white;
+    font-weight: 600; /* Semibold */
+}
+.dark .phase-nav-btn.active {
+    background-color: var(--brand-primary);
+    color: white;
+}
+/* Remove hover do estado ativo para clareza */
+.phase-nav-btn.active:hover {
+      background-color: var(--brand-primary);
+      color: white;
+}
 
-/* Cards de Tarefa - Efeito ao completar (mantido) */
-.task-card.task-completed { background-color: #f9fafb; border-color: #e5e7eb; opacity: 0.75; }
-.task-card.task-completed label, .task-card.task-completed p, .task-card.task-completed details summary,
-.task-card.task-completed details div, .task-card.task-completed ul { text-decoration: line-through; text-decoration-color: #9ca3af; color: #6b7280; opacity: 0.85; }
-.dark .task-card.task-completed { background-color: #374151; border-color: #4b5563; opacity: 0.65; }
-.dark .task-card.task-completed label, .dark .task-card.task-completed p, .dark .task-card.task-completed details summary,
-.dark .task-card.task-completed details div, .dark .task-card.task-completed ul { text-decoration-color: #6b7280; color: #9ca3af; opacity: 0.85; }
+/* Cards de Tarefa - Efeito ao completar */
+.task-card.task-completed {
+    background-color: #f9fafb; /* Tailwind gray-50 */
+    border-color: #e5e7eb; /* Tailwind gray-200 */
+    opacity: 0.75; /* Levemente apagado */
+}
+.task-card.task-completed label,
+.task-card.task-completed p,
+.task-card.task-completed details summary,
+.task-card.task-completed details div,
+.task-card.task-completed ul, /* Aplica também a listas dentro dos detalhes */
+.task-card.task-completed a /* Aplica também a links */
+{
+    text-decoration: line-through;
+    text-decoration-color: #9ca3af; /* Tailwind gray-400 */
+    color: #6b7280; /* Tailwind gray-500 */
+    opacity: 0.85;
+}
+/* Dark mode para tarefas completas */
+.dark .task-card.task-completed {
+    background-color: #374151; /* Tailwind gray-700 */
+    border-color: #4b5563; /* Tailwind gray-600 */
+    opacity: 0.65;
+}
+.dark .task-card.task-completed label,
+.dark .task-card.task-completed p,
+.dark .task-card.task-completed details summary,
+.dark .task-card.task-completed details div,
+.dark .task-card.task-completed ul,
+.dark .task-card.task-completed a
+{
+    text-decoration-color: #6b7280; /* Tailwind gray-500 */
+    color: #9ca3af; /* Tailwind gray-400 */
+    opacity: 0.85;
+}
 
-/* Checkbox da Tarefa (mantido com accent-color) */
-.task-checkbox { width: 1.25rem; height: 1.25rem; border-radius: 0.25rem; border: 2px solid #9ca3af; background-color: white; cursor: pointer; flex-shrink: 0; vertical-align: middle; margin-top: 0.125rem; transition: background-color 0.2s, border-color 0.2s; accent-color: var(--brand-primary); appearance: checkbox; -webkit-appearance: checkbox; }
-.dark .task-checkbox { border-color: #6b7280; background-color: #4b5563; }
+/* Checkbox da Tarefa (Usando accent-color para simplicidade e performance) */
+.task-checkbox {
+    width: 1.25rem; height: 1.25rem; /* 20px */
+    border-radius: 0.25rem; /* 4px */
+    border: 2px solid #9ca3af; /* Tailwind gray-400 */
+    background-color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    vertical-align: middle; /* Alinha melhor com texto */
+    margin-top: 0.125rem; /* Ajuste fino vertical */
+    transition: background-color 0.2s, border-color 0.2s;
+    accent-color: var(--brand-primary); /* Cor do check nativo */
+    /* Garante aparência nativa correta */
+    appearance: checkbox;
+    -webkit-appearance: checkbox;
+}
+.dark .task-checkbox {
+    border-color: #6b7280; /* Tailwind gray-500 */
+    background-color: #4b5563; /* Tailwind gray-600 */
+}
+/* Estilo do check já definido pelo accent-color */
 
-/* Details / Summary (mantido) */
-summary { list-style: none; padding: 0.25rem 0; cursor: pointer; display: inline-flex; align-items: center; transition: color 0.2s ease; }
-summary::-webkit-details-marker, summary::marker { display: none; }
-summary .details-chevron { margin-left: 0.25rem; transition: transform 0.2s ease-in-out; }
-details[open] > summary .details-chevron { transform: rotate(180deg); }
-details > div.details-content { line-height: 1.6; }
 
-/* Botões de Ação Dentro do Card (mantido) */
-.edit-task-details-btn, .delete-task-btn { background: none; border: none; padding: 0.1rem 0.3rem; margin: 0; cursor: pointer; font-size: 0.75rem; line-height: 1rem; transition: background-color 0.2s, color 0.2s; border-radius: 0.25rem; display: inline-flex; align-items: center; gap: 0.2rem; margin-top: 0.5rem; }
-.edit-task-details-btn:hover, .delete-task-btn:hover { text-decoration: underline; }
+/* Details / Summary */
+summary {
+    list-style: none; /* Remove marcador padrão */
+    padding: 0.25rem 0; /* Área de clique */
+    cursor: pointer;
+    display: inline-flex; /* Alinha texto e ícone */
+    align-items: center;
+    transition: color 0.2s ease;
+}
+/* Remove marcador em navegadores webkit */
+summary::-webkit-details-marker { display: none; }
+/* Remove marcador em Firefox */
+summary::marker { display: none; }
+
+summary .details-chevron {
+    margin-left: 0.25rem;
+    transition: transform 0.2s ease-in-out;
+}
+details[open] > summary .details-chevron {
+    transform: rotate(180deg);
+}
+/* Estilo do conteúdo dentro de details (prose para formatação) */
+details > div.details-content {
+    line-height: 1.6; /* Espaçamento entre linhas */
+}
+/* Garante que links dentro de .prose usem a cor da marca */
+.prose-a\:text-\[\var\(--brand-primary\)\] a,
+.prose a { /* Aplica a todos os links dentro de .prose */
+    color: var(--brand-primary) !important; /* Força a cor da marca */
+    text-decoration: none;
+}
+.prose a:hover {
+    text-decoration: underline;
+}
+
+
+/* Botões de Ação Dentro do Card de Tarefa */
+.edit-task-details-btn, .delete-task-btn {
+    background: none; border: none; padding: 0.1rem 0.3rem; margin: 0;
+    cursor: pointer; font-size: 0.75rem; line-height: 1rem; /* text-xs */
+    transition: background-color 0.2s, color 0.2s; border-radius: 0.25rem;
+    display: inline-flex; align-items: center; gap: 0.2rem;
+    margin-top: 0.5rem; /* Espaço acima dos botões */
+}
+.edit-task-details-btn:hover, .delete-task-btn:hover {
+    text-decoration: underline;
+}
 .edit-task-details-btn { color: var(--brand-primary); }
-.delete-task-btn { color: #ef4444; }
-.dark .delete-task-btn { color: #f87171; }
+.delete-task-btn { color: #ef4444; } /* Tailwind red-500 */
+.dark .delete-task-btn { color: #f87171; } /* Tailwind red-400 */
 .edit-task-details-btn:hover { background-color: rgba(139, 92, 246, 0.1); }
 .delete-task-btn:hover { background-color: rgba(239, 68, 68, 0.1); }
 
-/* Barra de Progresso (mantido) */
-#progressBar { background-color: var(--brand-primary); transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-radius: 9999px; }
 
-/* Ícones Lucide (mantido) */
-[data-lucide] { display: inline-block; width: 1em; height: 1em; vertical-align: -0.15em; stroke-width: 2; }
+/* Barra de Progresso */
+#progressBar {
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição suave */
+    /* Cor já aplicada inline no HTML, mas pode ser definida aqui também */
+    /* background-color: var(--brand-primary); */
+    /* border-radius já aplicado via Tailwind */
+}
 
-/* Utilitários e Placeholders (mantido) */
+/* Ícones Lucide */
+[data-lucide] {
+    display: inline-block;
+    width: 1em; height: 1em;
+    vertical-align: -0.15em; /* Ajuste fino vertical */
+    stroke-width: 2;
+}
+
+/* Utilitários e Placeholders */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 .phase-content.hidden { display: none; }
+/* Placeholder de carregamento com animação */
 .task-list-placeholder { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-.prose-a\:text-\[\var\(--brand-primary\)\] a { color: var(--brand-primary) !important; }
 
-/* Estilos Tarefas Excluídas */
-.deleted-task-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; background-color: rgba(107, 114, 128, 0.1); border-radius: 0.375rem; border: 1px solid transparent; }
-.dark .deleted-task-item { background-color: rgba(75, 85, 99, 0.2); }
-.deleted-task-item span { font-size: 0.875rem; color: #6b7280; text-decoration: line-through; opacity: 0.8; margin-right: 1rem; /* Espaço para botão */}
-.dark .deleted-task-item span { color: #9ca3af; }
-.restore-task-btn { background: none; border: none; padding: 0.1rem 0.3rem; margin: 0; cursor: pointer; font-size: 0.75rem; line-height: 1rem; transition: background-color 0.2s, color 0.2s; border-radius: 0.25rem; display: inline-flex; align-items: center; gap: 0.2rem; color: #10b981; flex-shrink: 0; /* Evita que o botão encolha */ }
-.dark .restore-task-btn { color: #34d399; }
-.restore-task-btn:hover { text-decoration: underline; background-color: rgba(16, 185, 129, 0.1); }
+
+/* Estilos Tarefas Excluídas (Lixeira) */
+#deletedTaskList .deleted-task-item {
+     /* Estilos base já aplicados via Tailwind */
+}
+#deletedTaskList .restore-task-btn {
+    background: none; border: none; padding: 0.1rem 0.3rem; margin: 0;
+    cursor: pointer; font-size: 0.75rem; line-height: 1rem;
+    transition: background-color 0.2s, color 0.2s; border-radius: 0.25rem;
+    display: inline-flex; align-items: center; gap: 0.2rem;
+    color: #10b981; /* Tailwind green-500 */
+    flex-shrink: 0;
+}
+.dark #deletedTaskList .restore-task-btn { color: #34d399; } /* Tailwind green-400 */
+#deletedTaskList .restore-task-btn:hover {
+    text-decoration: underline;
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* Estilos para Anotações Salvas */
+.saved-note-item {
+    position: relative; /* Contexto para botões se necessário */
+}
+.note-content {
+    white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+    word-break: break-word; /* Quebra palavras longas */
+    line-height: 1.6;
+}
+.note-meta {
+    margin-top: 0.75rem; /* Espaço entre conteúdo e meta/ações */
+}
+.note-actions button {
+    background: none; border: none; cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center;
+}
+/* Foco visível específico para botões de nota */
+.note-actions button:focus-visible {
+     outline: 2px solid var(--brand-primary);
+     outline-offset: 1px;
+     background-color: rgba(139, 92, 246, 0.1);
+}
+/* Cores já definidas via Tailwind no HTML */
+
+
+/* Estilos Dashboard */
+.session-item a { word-break: break-all; } /* Evita que link longo quebre layout */
+
+/* Toast (Estilo base, cores aplicadas via JS em common.js) */
+#dashboardToast {
+    /* Posicionamento fixo, cores e texto via JS */
+}
+
+--- END OF FILE style.css ---
