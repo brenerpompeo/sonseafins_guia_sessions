@@ -25,7 +25,8 @@
     <header class="pt-8 pb-6">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <img src="logo_sons_afins.svg" alt="Sons e Afins Logo" width="40" height="40" class="w-10 h-10"> <!-- Performance: width/height adicionados -->
+          <!-- Performance: width/height adicionados -->
+          <img src="logo_sons_afins.svg" alt="Sons e Afins Logo" width="40" height="40" class="w-10 h-10">
           <h1 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Sons e Afins</h1>
         </div>
         <button id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema" class="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--brand-primary)] focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900 transition-colors">
@@ -63,7 +64,8 @@
           <span id="progressPercentage" class="text-sm font-medium text-gray-700 dark:text-gray-300">0%</span>
         </div>
         <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-          <div id="progressBar" class="h-full w-0"></div> <!-- Width controlado via JS -->
+          <!-- Width controlado via JS -->
+          <div id="progressBar" class="h-full w-0"></div>
         </div>
       </div>
 
@@ -118,7 +120,7 @@
             <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">~8-10 sem. antes</span>
           </div>
           <div class="space-y-5 task-list"> <!-- task-list adicionada para facilitar seleção JS -->
-            <!-- Tarefa 1.1 - Estrutura Refatorada com task-card -->
+            <!-- Tarefa 1.1 -->
             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
                 <div class="flex-grow">
@@ -149,7 +151,6 @@
                 </div>
               </div>
             </div>
-
             <!-- Tarefa 1.2 -->
             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
@@ -159,7 +160,7 @@
                     <label for="task-1-2" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">1.2 Confirmação Chave</label>
                   </div>
                   <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
-                    Bloquear data, local e talentos.
+                    Bloquear data, local e talentos principais.
                   </p>
                 </div>
                 <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
@@ -170,18 +171,17 @@
                     </summary>
                     <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
                       <ul class="list-disc pl-4 space-y-1">
-                        <li>Confirmar Data e Horário exatos: [Data e Hora].</li>
-                        <li>Confirmar Local: [Nome do Local] - Acordo: [Link/Ref].</li>
-                        <li>Confirmar DJs: [Nome 1], [Nome 2], [Nome 3].</li>
-                        <li>Confirmar Moderador: [Nome].</li>
-                        <li>Confirmar MCs/Outros (se aplicável): [Nome(s)].</li>
+                        <li>Confirmar Data e Horário exatos: [DD/MM/AAAA - HH:MM].</li>
+                        <li>Confirmar Local: [Nome do Local] - Acordo: [Link/Ref Contrato].</li>
+                        <li>Confirmar DJs Principais: [Nome 1], [Nome 2].</li>
+                        <li>Confirmar Moderador/Host: [Nome].</li>
+                        <li>Confirmar Convidados Especiais (se houver): [Nome(s)].</li>
                       </ul>
                     </div>
                   </details>
                 </div>
               </div>
             </div>
-
              <!-- Tarefa 1.3 -->
             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
@@ -191,7 +191,7 @@
                      <label for="task-1-3" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">1.3 Orçamento Preliminar</label>
                    </div>
                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
-                     Estimativa inicial de custos.
+                     Estimativa inicial de custos e validação de verba.
                    </p>
                  </div>
                  <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
@@ -202,16 +202,16 @@
                      </summary>
                      <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
                        <ul class="list-disc pl-4 space-y-1">
-                         <li>Listar custos macro (Artistas, Técnica A/V, Local, etc.).</li>
-                         <li>Validar verba disponível vs. estimativa.</li>
+                         <li>Listar custos macro (Artistas, Técnica A/V, Local, Equipe, Logística, Pós).</li>
+                         <li>Estimativa Total: R$ [Valor]. Verba Disponível: R$ [Valor].</li>
                          <li>Planilha Orçamento Preliminar: [Link].</li>
+                         <li>Aprovação Preliminar: [Nome/Data].</li>
                        </ul>
                      </div>
                    </details>
                  </div>
                </div>
             </div>
-
             <!-- Tarefa 1.4 -->
             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
@@ -221,7 +221,7 @@
                      <label for="task-1-4" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">1.4 Definição Equipe Core</label>
                    </div>
                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
-                     Atribuir responsabilidades.
+                     Atribuir responsabilidades chave da produção.
                    </p>
                  </div>
                  <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
@@ -233,10 +233,11 @@
                      <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
                        <ul class="list-disc pl-4 space-y-1">
                          <li>Resp. Produção Executiva: [Nome].</li>
-                         <li>Resp. Artístico/Curadoria: [Nome].</li>
-                         <li>Resp. Técnico (A/V): [Nome/Empresa].</li>
-                         <li>Resp. Comunicação/Convidados: [Nome].</li>
-                         <li>Resp. Financeiro: [Nome].</li>
+                         <li>Resp. Direção / Artístico: [Nome].</li>
+                         <li>Resp. Técnico (A/V - Contato Principal): [Nome/Empresa].</li>
+                         <li>Resp. Comunicação/Marketing: [Nome].</li>
+                         <li>Resp. Financeiro/Adm: [Nome].</li>
+                         <li>Outros Papéis Chave: [Ex: Curadoria, Roteiro].</li>
                        </ul>
                      </div>
                    </details>
@@ -248,137 +249,882 @@
 
         <!-- ### FASE 2: PLANEJAMENTO E PREPARAÇÃO ### -->
         <section id="planejamento-preparacao-content" class="phase-content hidden" role="tabpanel" aria-labelledby="tab-planejamento" tabindex="0">
-           <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
-             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 2: Planejamento e Preparação</h3>
-             <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">~8-2 sem. antes</span>
-           </div>
-           <div class="space-y-5 task-list">
-             <!-- Tarefa 2.1 -->
-             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
-               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
-                 <div class="flex-grow">
-                   <div class="flex items-start">
-                     <input type="checkbox" id="task-2-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
-                     <label for="task-2-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.1 Cronograma Detalhado</label>
-                   </div>
-                   <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
-                     Definir todas as datas e prazos.
-                   </p>
-                 </div>
-                 <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
-                   <details>
-                     <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
-                       Ver detalhes
-                       <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
-                     </summary>
-                     <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
-                        <ul class="list-disc pl-4 space-y-1">
-                           <li>Datas VTs: [Data 1], [Data 2].</li>
-                           <li>Datas Testes Técnicos: [Data 3].</li>
-                           <li>Prazo Confirmação Casting Completo: [Data].</li>
-                           <li>Prazo Envio Convites: [Data].</li>
-                           <li>Prazo Definição Layout/Cenografia: [Data].</li>
-                           <li>Run-of-Show Dia Gravação: [Link/Doc].</li>
-                           <li>Prazos Pós-Produção: [Data Entrega Bruto], [Data Edição].</li>
-                           <li>Cronograma Completo: [Link].</li>
-                        </ul>
+            <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 2: Planejamento e Preparação</h3>
+                <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">~8-2 sem. antes</span>
+            </div>
+            <div class="space-y-5 task-list">
+                <!-- Tarefa 2.1 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                  <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                    <div class="flex-grow">
+                      <div class="flex items-start">
+                        <input type="checkbox" id="task-2-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                        <label for="task-2-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.1 Cronograma Detalhado</label>
+                      </div>
+                      <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                        Definir todas as datas e prazos chave da produção.
+                      </p>
+                    </div>
+                    <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                      <details>
+                        <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                          Ver detalhes
+                          <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                        </summary>
+                        <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                              <li>Datas VTs (Visitas Técnicas): [DD/MM], [DD/MM].</li>
+                              <li>Datas Testes Técnicos: [DD/MM].</li>
+                              <li>Prazo Confirmação Casting Completo: [DD/MM/AAAA].</li>
+                              <li>Prazo Envio Convites (se aplicável): [DD/MM/AAAA].</li>
+                              <li>Prazo Definição Layout/Cenografia Final: [DD/MM/AAAA].</li>
+                              <li>Run-of-Show Dia Gravação (documento): [Link/Ref].</li>
+                              <li>Prazos Pós-Produção: Entrega Bruto [DD/MM], 1º Corte [DD/MM], Final [DD/MM].</li>
+                              <li>Cronograma Completo GERAL: [Link Planilha/Ferramenta].</li>
+                           </ul>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+                <!-- Tarefa 2.2 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-2" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-2" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.2 Orçamento Detalhado e Fluxo</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Finalizar planilha de custos e cronograma de pagamentos.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Planilha Detalhada Final: [Link].</li>
+                                   <li>Aprovação Final do Orçamento: [Nome/Data].</li>
+                                   <li>Cronograma de Pagamentos (Fluxo): [Link/Doc].</li>
+                                   <li>Solicitação Adiantamentos/Pagamentos Iniciais: OK.</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.3 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-3" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-3" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.3 Roteiro e Conteúdo</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Definir estrutura dos episódios, pautas, perguntas.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Estrutura Geral da Temporada/Session: [Link/Doc].</li>
+                                   <li>Roteiros por Episódio/Bloco Finalizados: [Link/Pasta].</li>
+                                   <li>Pautas Entrevistas (Moderador/Artista) Finalizadas: [Link/Doc].</li>
+                                   <li>Textos para Host/Apresentador (se houver): [Link/Doc].</li>
+                                   <li>Aprovação Final Roteiros/Conteúdo: [Nome/Data].</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.4 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-4" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-4" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.4 Plano Técnico (A/V)</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Definir equipamentos, rider técnico, mapa de palco/luz.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Lista Equipamentos A/V Final (Câmeras, Lentes, Áudio, Luz): [Link].</li>
+                                   <li>Rider Técnico Artistas Atendido/Validado: [Link/Pasta].</li>
+                                   <li>Mapa de Palco/Set Final: [Link/Imagem].</li>
+                                   <li>Planta Baixa Luz Final: [Link/Imagem].</li>
+                                   <li>Plano de Gravação Áudio Final (Microfones, Mesa, Canais): [Link/Doc].</li>
+                                   <li>Necessidades Elétricas Confirmadas com Local: OK.</li>
+                                   <li>Fornecedor Técnico Confirmado/Contratado: [Nome/Contato].</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.5 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-5" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-5" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.5 Plano de Comunicação (Pré)</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Estratégia divulgação pré-gravação, convites, redes sociais.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Estratégia de Comunicação (se aplicável antes da gravação): [Link/Doc].</li>
+                                   <li>Lista de Convidados para Gravação (Público, Imprensa, VIPs): [Link].</li>
+                                   <li>Modelo e Envio de Convite/Confirmação: Realizado [DD/MM].</li>
+                                   <li>Cronograma de Posts Redes Sociais (Pré-Gravação): [Link].</li>
+                                   <li>Materiais de Divulgação (Arte, Texto): [Link/Pasta].</li>
+                                   <li>Assessoria de Imprensa Contatada (se houver): [Contato/Status].</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.6 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-6" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-6" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.6 Design e Identidade Visual</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Finalizar cenografia, artes gráficas (GCs, vinhetas).
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Conceito Cenografia/Direção de Arte Aprovado: [Link/Moodboard].</li>
+                                   <li>Projeto Cenográfico Final: [Link/Desenho].</li>
+                                   <li>Fornecedor Cenografia Confirmado/Contratado: [Nome/Contato].</li>
+                                   <li>Pacote Gráfico Final (GCs, Vinheta Abertura/Encerramento, Logo): [Link/Pasta].</li>
+                                   <li>Aprovação Final Design Geral: [Nome/Data].</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.7 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-7" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-7" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.7 Contratos e Acordos</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Formalizar todos os acordos legais e financeiros.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Contratos Artistas/Talentos (Cachê, Imagem) Assinados: [Link/Pasta].</li>
+                                   <li>Contrato Local Assinado: [Link/Ref].</li>
+                                   <li>Contratos Equipe Principal/Fornecedores Chave Assinados: [Link/Pasta].</li>
+                                   <li>Termos de Uso de Imagem (Público/Convidados) Preparados/Aprovados.</li>
+                                   <li>Seguro de Responsabilidade Civil Contratado: [Apólice Ref/Link].</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.8 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-8" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-8" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.8 Logística Detalhada</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Planejar transporte, alimentação, hospedagem, credenciamento.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Plano de Transporte (Equipe, Artistas, Equipamento): [Link/Doc].</li>
+                                   <li>Necessidades de Hospedagem (se aplicável) Reservadas: [Confirmações].</li>
+                                   <li>Plano de Alimentação (Catering dia gravação) Contratado: [Cardápio/Ref].</li>
+                                   <li>Credenciamento (Pulseiras, Crachás) Definido/Produzido: OK.</li>
+                                   <li>Plano de Acesso/Estacionamento: Definido [Link/Mapa].</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.9 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-2-9" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-2-9" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.9 Plano de Contingência</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Identificar riscos e planejar soluções alternativas (Plano B, C).
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                               <ul class="list-disc pl-4 space-y-1">
+                                   <li>Mapeamento de Riscos Finalizado: [Link/Doc].</li>
+                                   <li>Plano B para Falhas Técnicas Críticas (Backup Equip., Energia): Definido.</li>
+                                   <li>Plano B para Ausência de Pessoal Chave (Substitutos): Definido.</li>
+                                   <li>Plano B para Problemas Logísticos/Acesso/Clima: Definido.</li>
+                                   <li>Contatos de Emergência (Bombeiro, Polícia, Médico, Técnico) Listados: [Doc].</li>
+                               </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 2.10 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                   <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                     <div class="flex-grow">
+                       <div class="flex items-start">
+                         <input type="checkbox" id="task-2-10" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                         <label for="task-2-10" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.10 Definição Métricas Sucesso</label>
+                       </div>
+                       <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                         Estabelecer KPIs para avaliar o resultado da session.
+                       </p>
                      </div>
-                   </details>
-                 </div>
-               </div>
-             </div>
-             <!-- Adicionar outras tarefas 2.2 a 2.11 aqui, seguindo a mesma estrutura e com IDs únicos (task-2-2, task-2-3...) -->
-             <div class="p-4 text-center text-gray-500 dark:text-gray-400 italic">Tarefas 2.2 a 2.11 a serem adicionadas aqui...</div>
-           </div>
-         </section>
+                     <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                       <details>
+                         <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                           Ver detalhes
+                           <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                         </summary>
+                         <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                             <li>KPIs de Produção (Ex: Cumpriu cronograma? Dentro do orçamento?): Definidos.</li>
+                             <li>KPIs de Conteúdo (Ex: Qualidade técnica A/V? Engajamento artistas?): Definidos.</li>
+                             <li>KPIs de Audiência (Pós-lançamento - Ex: Views, Likes, Shares, Watch time): Definidos.</li>
+                             <li>KPIs de Negócio (Ex: Retorno patrocinadores? Leads gerados?): Definidos.</li>
+                             <li>Documento Métricas de Sucesso: [Link].</li>
+                           </ul>
+                         </div>
+                       </details>
+                     </div>
+                   </div>
+                </div>
+                <!-- Tarefa 2.11 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                   <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                     <div class="flex-grow">
+                       <div class="flex items-start">
+                         <input type="checkbox" id="task-2-11" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                         <label for="task-2-11" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">2.11 Reunião Geral Alinhamento Final</label>
+                       </div>
+                       <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                         Kick-off final com toda a equipe chave antes da execução.
+                       </p>
+                     </div>
+                     <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                       <details>
+                         <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                           Ver detalhes
+                           <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                         </summary>
+                         <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                             <li>Data da Reunião: [DD/MM/AAAA].</li>
+                             <li>Participantes Confirmados: [Lista].</li>
+                             <li>Pauta da Reunião Finalizada: [Link/Doc].</li>
+                             <li>Apresentação Final (Planos, Cronograma, Run-of-Show) Revisada: [Link].</li>
+                             <li>Registro/Ata da Reunião Distribuída: [Link].</li>
+                           </ul>
+                         </div>
+                       </details>
+                     </div>
+                   </div>
+                </div>
+            </div>
+        </section>
 
         <!-- ### FASE 3: EXECUÇÃO ### -->
         <section id="execucao-content" class="phase-content hidden" role="tabpanel" aria-labelledby="tab-execucao" tabindex="0">
-           <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
-             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 3: Execução</h3>
-             <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">Dia da Gravação</span>
-           </div>
-           <div class="space-y-5 task-list">
-             <!-- Tarefa 3.1 -->
-             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
-               <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
-                 <div class="flex-grow">
-                   <div class="flex items-start">
-                     <input type="checkbox" id="task-3-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
-                     <label for="task-3-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.1 Montagem e Testes Finais</label>
-                   </div>
-                   <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
-                     Preparar set e verificar tudo.
-                   </p>
-                 </div>
-                 <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
-                   <details>
-                     <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
-                       Ver detalhes
-                       <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
-                     </summary>
-                     <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
-                       <ul class="list-disc pl-4 space-y-1">
-                         <li>Equipe chegou às [Hora]. Montagem OK [Hora].</li>
-                         <li>Passagem Som OK. Teste Luz OK. Teste Câmeras/Gravação OK.</li>
-                         <li>Cenário/Arte OK.</li>
-                         <li>Comunicação interna OK.</li>
-                       </ul>
+            <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 3: Execução</h3>
+                <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">Dia da Gravação</span>
+            </div>
+            <div class="space-y-5 task-list">
+                <!-- Tarefa 3.1 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-3-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-3-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.1 Montagem e Testes Finais</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Preparar set, equipamentos e verificar tudo no local.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Equipe chegou às [HH:MM]. Montagem A/V iniciada [HH:MM], concluída [HH:MM].</li>
+                                <li>Passagem Som OK [HH:MM]. Teste Luz OK [HH:MM]. Teste Câmeras/Gravação OK [HH:MM].</li>
+                                <li>Cenário/Arte Montagem OK [HH:MM].</li>
+                                <li>Comunicação interna (Rádios/Intercom) Testada OK.</li>
+                                <li>Verificação final de segurança/energia OK.</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 3.2 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-3-2" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-3-2" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.2 Recepção e Briefing Final</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Receber artistas, convidados e alinhar últimos detalhes com a equipe.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Artistas/Talentos chegaram [HH:MM]. Acomodados [Camarim/Espaço OK].</li>
+                                <li>Convidados (se houver) chegaram [HH:MM]. Recepção/Credenciamento OK.</li>
+                                <li>Briefing final com Diretor, Produtor, Técnico A/V [HH:MM].</li>
+                                <li>Briefing com Artistas/Host sobre run-of-show e dinâmica [HH:MM].</li>
+                                <li>Alinhamento Comunicação (Redes Sociais durante evento): Realizado.</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 3.3 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-3-3" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-3-3" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.3 Gravação Blocos/Episódios</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Executar a gravação conforme o run-of-show planejado.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Gravação iniciada [HH:MM]. "REC" confirmado em todas as câmeras/áudio.</li>
+                                <li>Seguindo Run-of-Show: [Sim/Não - Observações].</li>
+                                <li>Check de Áudio/Vídeo periódico durante gravação: Realizado OK.</li>
+                                <li>Gestão de Tempo/Intervalos: Conforme planejado.</li>
+                                <li>Comunicação Diretor <> Equipe <> Palco: Fluida.</li>
+                                <li>Gravação finalizada [HH:MM]. "Stop REC" confirmado.</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 3.4 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-3-4" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-3-4" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.4 Captura Conteúdo Adicional</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Gravar material extra (bastidores, entrevistas, docs).
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Entrevistas Artistas (Agendadas): Gravadas [HH:MM] - [HH:MM].</li>
+                                <li>Entrevistas Convidados/Público (se aplicável): Gravadas [HH:MM] - [HH:MM].</li>
+                                <li>Captura Imagens Bastidores/Making-of: Realizada.</li>
+                                <li>Local/Set para Entrevistas preparado: OK (Luz, Som).</li>
+                                <li>Termos de Imagem Assinados (se necessário): Coletados.</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 3.5 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                   <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                     <div class="flex-grow">
+                       <div class="flex items-start">
+                         <input type="checkbox" id="task-3-5" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                         <label for="task-3-5" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.5 Gestão de Imprevistos</label>
+                       </div>
+                       <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                         Lidar com problemas que surgirem durante a gravação.
+                       </p>
                      </div>
-                   </details>
-                 </div>
-               </div>
-             </div>
-             <!-- Adicionar outras tarefas 3.2 a 3.7 aqui, seguindo a mesma estrutura e com IDs únicos (task-3-2, task-3-3...) -->
-             <div class="p-4 text-center text-gray-500 dark:text-gray-400 italic">Tarefas 3.2 a 3.7 a serem adicionadas aqui...</div>
-           </div>
-         </section>
+                     <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                       <details>
+                         <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                           Ver detalhes
+                           <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                         </summary>
+                         <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                             <li>Problemas Técnicos Ocorridos: [Descrever ou N/A]. Solução: [Descrever].</li>
+                             <li>Problemas com Talentos/Convidados: [Descrever ou N/A]. Solução: [Descrever].</li>
+                             <li>Problemas Logísticos/Estrutura: [Descrever ou N/A]. Solução: [Descrever].</li>
+                             <li>Plano de Contingência Acionado?: [Sim/Não - Qual?].</li>
+                             <li>Comunicação de Crise Gerenciada: [Sim/Não].</li>
+                           </ul>
+                         </div>
+                       </details>
+                     </div>
+                   </div>
+                </div>
+                <!-- Tarefa 3.6 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                   <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                     <div class="flex-grow">
+                       <div class="flex items-start">
+                         <input type="checkbox" id="task-3-6" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                         <label for="task-3-6" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.6 Coleta Feedback Imediato</label>
+                       </div>
+                       <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                         Conversa rápida com equipe e artistas sobre a experiência.
+                       </p>
+                     </div>
+                     <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                       <details>
+                         <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                           Ver detalhes
+                           <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                         </summary>
+                         <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                             <li>Feedback rápido da Equipe Técnica: [Principais Pontos Registrados].</li>
+                             <li>Feedback rápido dos Artistas/Talentos: [Principais Pontos Registrados].</li>
+                             <li>Feedback rápido da Produção/Direção: [Principais Pontos Registrados].</li>
+                             <li>Anotações gerais pós-evento (quentes): [Link/Notas na Área de Anotações].</li>
+                           </ul>
+                         </div>
+                       </details>
+                     </div>
+                   </div>
+                </div>
+                <!-- Tarefa 3.7 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-3-7" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-3-7" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">3.7 Desmontagem e Segurança Material</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Desmontar set e garantir a segurança do material gravado.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Início Desmontagem A/V: [HH:MM]. Conclusão: [HH:MM].</li>
+                                <li>Início Desmontagem Cenografia: [HH:MM]. Conclusão: [HH:MM].</li>
+                                <li>Checklist de Equipamentos Retornados Conferido: OK.</li>
+                                <li>Material Gravado (Cartões/HDs) Coletado, Identificado e Seguro: OK [Resp: Nome].</li>
+                                <li>Local Deixado Limpo/Organizado Conforme Acordo: OK.</li>
+                                <li>Transporte de Retorno Equipamentos/Material: Organizado/Realizado.</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- ### FASE 4: PÓS-PRODUÇÃO E ENCERRAMENTO ### -->
         <section id="pos-producao-encerramento-content" class="phase-content hidden" role="tabpanel" aria-labelledby="tab-pos" tabindex="0">
-           <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
-             <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 4: Pós-Produção e Encerramento</h3>
-             <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">Semanas/Meses após</span>
-           </div>
-           <div class="space-y-5 task-list">
-             <!-- Tarefa 4.1 -->
-             <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
-                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
-                  <div class="flex-grow">
-                    <div class="flex items-start">
-                      <input type="checkbox" id="task-4-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
-                      <label for="task-4-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.1 Backup e Organização Bruto</label>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
-                     Salvar e catalogar material.
-                    </p>
-                  </div>
-                  <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
-                    <details>
-                      <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
-                        Ver detalhes
-                        <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
-                      </summary>
-                      <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
-                        <ul class="list-disc pl-4 space-y-1">
-                          <li>Material A/V backupeado em [Local 1] e [Local 2].</li>
-                          <li>Arquivos organizados (câmera/fonte/dia).</li>
-                          <li>Planilha Logs/Minutagem (se houver): [Link].</li>
-                          <li>Status: Concluído [Data].</li>
-                        </ul>
-                      </div>
-                    </details>
-                  </div>
+            <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Fase 4: Pós-Produção e Encerramento</h3>
+                <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full font-medium whitespace-nowrap">Semanas/Meses após</span>
+            </div>
+            <div class="space-y-5 task-list">
+                <!-- Tarefa 4.1 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                   <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                     <div class="flex-grow">
+                       <div class="flex items-start">
+                         <input type="checkbox" id="task-4-1" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                         <label for="task-4-1" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.1 Backup e Organização Bruto</label>
+                       </div>
+                       <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                        Salvar TODO material gravado em múltiplos locais e catalogar.
+                       </p>
+                     </div>
+                     <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                       <details>
+                         <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                           Ver detalhes
+                           <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                         </summary>
+                         <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                             <li>Material A/V backupeado em [Local Físico 1/HD] e [Nuvem/Servidor]. (Mínimo 2 cópias).</li>
+                             <li>Verificação Checksum/Integridade Arquivos: Realizada OK.</li>
+                             <li>Arquivos organizados (Estrutura Pastas Padrão): OK.</li>
+                             <li>Planilha Logs/Minutagem Preliminar Criada/Atualizada: [Link].</li>
+                             <li>Status: Concluído [DD/MM/AAAA] por [Nome].</li>
+                           </ul>
+                         </div>
+                       </details>
+                     </div>
+                   </div>
                 </div>
-             </div>
-             <!-- Adicionar outras tarefas 4.2 a 4.6 aqui, seguindo a mesma estrutura e com IDs únicos (task-4-2, task-4-3...) -->
-             <div class="p-4 text-center text-gray-500 dark:text-gray-400 italic">Tarefas 4.2 a 4.6 a serem adicionadas aqui...</div>
-           </div>
-         </section>
+                <!-- Tarefa 4.2 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-4-2" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-4-2" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.2 Edição Vídeo e Áudio</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Montagem, correção de cor, mixagem de som, trilha sonora.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Responsável Edição Vídeo: [Nome/Empresa].</li>
+                                <li>Responsável Edição/Mix Áudio: [Nome/Empresa].</li>
+                                <li>Briefing Pós-Produção Realizado: [DD/MM/AAAA].</li>
+                                <li>Entrega 1º Corte: Previsto [DD/MM], Realizado [DD/MM]. Feedback Enviado [DD/MM].</li>
+                                <li>Entrega Corte Final: Previsto [DD/MM], Realizado [DD/MM].</li>
+                                <li>Trilha Sonora/Direitos Musicais Confirmados: OK [Link/Ref].</li>
+                                <li>Finalização (Color Grading, Master Áudio): Concluída [DD/MM/AAAA].</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 4.3 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                   <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                     <div class="flex-grow">
+                       <div class="flex items-start">
+                         <input type="checkbox" id="task-4-3" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                         <label for="task-4-3" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.3 Aprovações Finais</label>
+                       </div>
+                       <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                         Obter aprovação final dos cortes pelos stakeholders chave.
+                       </p>
+                     </div>
+                     <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                       <details>
+                         <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                           Ver detalhes
+                           <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                         </summary>
+                         <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                             <li>Corte(s) final(is) enviado(s) para aprovação: [DD/MM/AAAA].</li>
+                             <li>Aprovação Cliente/Direção Interna: [Nome/Data].</li>
+                             <li>Aprovação Artistas (se contratual): [Nome/Data].</li>
+                             <li>Aprovação Patrocinadores (se contratual): [Nome/Data].</li>
+                             <li>Versão Final Master Aprovada: [Link Arquivo Final].</li>
+                           </ul>
+                         </div>
+                       </details>
+                     </div>
+                   </div>
+                </div>
+                <!-- Tarefa 4.4 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                   <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                     <div class="flex-grow">
+                       <div class="flex items-start">
+                         <input type="checkbox" id="task-4-4" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                         <label for="task-4-4" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.4 Criação Materiais Divulgação Pós</label>
+                       </div>
+                       <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                         Produzir teasers, trailers, clipes, posts para lançamento.
+                       </p>
+                     </div>
+                     <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                       <details>
+                         <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                           Ver detalhes
+                           <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                         </summary>
+                         <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                           <ul class="list-disc pl-4 space-y-1">
+                             <li>Definição Peças de Divulgação (Lista): [Link].</li>
+                             <li>Criação Teasers/Trailers/Clipes Curtos: [Link/Pasta].</li>
+                             <li>Criação Artes Redes Sociais (Posts, Stories, Capas): [Link/Pasta].</li>
+                             <li>Textos/Copy para Divulgação Finalizados: [Link/Doc].</li>
+                             <li>Aprovação Materiais Divulgação Pós: [Nome/Data].</li>
+                           </ul>
+                         </div>
+                       </details>
+                     </div>
+                   </div>
+                </div>
+                <!-- Tarefa 4.5 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-4-5" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-4-5" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.5 Distribuição e Lançamento</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Publicar o conteúdo final nas plataformas definidas.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Cronograma de Lançamento Episódios/Conteúdo: [Link/Calendário].</li>
+                                <li>Upload e Agendamento YouTube: Realizado [Datas].</li>
+                                <li>Upload e Agendamento Spotify (Áudio): Realizado [Datas].</li>
+                                <li>Publicação em Redes Sociais (Conforme plano): Em andamento/Concluído.</li>
+                                <li>Envio para Imprensa/Influenciadores (Release): Realizado [Data].</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarefa 4.6 -->
+                <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                        <div class="flex-grow">
+                          <div class="flex items-start">
+                            <input type="checkbox" id="task-4-6" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                            <label for="task-4-6" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.6 Análise de Métricas Pós-Lançamento</label>
+                          </div>
+                          <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                            Coletar e analisar os resultados com base nos KPIs definidos.
+                          </p>
+                        </div>
+                        <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                          <details>
+                            <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                              Ver detalhes
+                              <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                            </summary>
+                            <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                              <ul class="list-disc pl-4 space-y-1">
+                                <li>Coleta Dados YouTube Analytics (após X dias/semanas): [Link/Relatório].</li>
+                                <li>Coleta Dados Spotify for Podcasters (após X dias/semanas): [Link/Relatório].</li>
+                                <li>Coleta Dados Redes Sociais (Engajamento, Alcance): [Link/Relatório].</li>
+                                <li>Análise vs KPIs (Definidos em 2.10): [Link/Doc Análise].</li>
+                                <li>Relatório de Resultados (Preliminar/Final): [Data].</li>
+                              </ul>
+                            </div>
+                          </details>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Tarefa 4.7 -->
+                 <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                      <div class="flex-grow">
+                        <div class="flex items-start">
+                          <input type="checkbox" id="task-4-7" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                          <label for="task-4-7" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.7 Pagamentos Finais e Fechamento Financeiro</label>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                          Realizar últimos pagamentos e conciliar o orçamento final.
+                        </p>
+                      </div>
+                      <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                        <details>
+                          <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                            Ver detalhes
+                            <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                          </summary>
+                          <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                            <ul class="list-disc pl-4 space-y-1">
+                              <li>Pagamentos Finais (Equipe, Fornecedores, Artistas) Realizados: [Datas].</li>
+                              <li>Recebimentos Finais (Patrocínios, etc.) Verificados: OK.</li>
+                              <li>Conciliação Orçamento Realizado vs. Planejado Finalizada: [Link/Planilha Final].</li>
+                              <li>Relatório Financeiro Final Concluído: [DD/MM/AAAA].</li>
+                            </ul>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+                 </div>
+                 <!-- Tarefa 4.8 -->
+                 <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                      <div class="flex-grow">
+                        <div class="flex items-start">
+                          <input type="checkbox" id="task-4-8" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                          <label for="task-4-8" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.8 Reunião Pós-Mortem (Lições Aprendidas)</label>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                          Analisar o que funcionou, o que não funcionou, e documentar.
+                        </p>
+                      </div>
+                      <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                        <details>
+                          <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                            Ver detalhes
+                            <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                          </summary>
+                          <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                            <ul class="list-disc pl-4 space-y-1">
+                              <li>Data da Reunião: [DD/MM/AAAA].</li>
+                              <li>Participantes Presentes: [Lista].</li>
+                              <li>Discussão Pontos Positivos Registrada: [Link/Ata].</li>
+                              <li>Discussão Pontos a Melhorar Registrada: [Link/Ata].</li>
+                              <li>Lições Aprendidas Documentadas e Compartilhadas: [Link/Doc].</li>
+                              <li>Próximos Passos/Melhorias para Session Futura Definidos.</li>
+                            </ul>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+                 </div>
+                 <!-- Tarefa 4.9 -->
+                 <div class="task-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-[var(--brand-primary)]/10 transition-shadow duration-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                      <div class="flex-grow">
+                        <div class="flex items-start">
+                          <input type="checkbox" id="task-4-9" class="task-checkbox mt-1 mr-3 flex-shrink-0">
+                          <label for="task-4-9" class="font-semibold text-gray-800 dark:text-gray-100 cursor-pointer">4.9 Arquivamento Final do Projeto</label>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1 pl-7">
+                          Organizar e armazenar toda a documentação e material final.
+                        </p>
+                      </div>
+                      <div class="text-sm w-full sm:w-auto flex-shrink-0 pl-7 sm:pl-0">
+                        <details>
+                          <summary class="font-medium text-gray-700 dark:text-gray-300 hover:text-[var(--brand-primary)] dark:hover:text-[var(--brand-primary)] inline-flex items-center cursor-pointer">
+                            Ver detalhes
+                            <i data-lucide="chevron-down" class="details-chevron w-4 h-4 ml-1" aria-hidden="true"></i>
+                          </summary>
+                          <div class="mt-3 pt-3 pl-4 border-l-2 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400">
+                            <ul class="list-disc pl-4 space-y-1">
+                              <li>Pasta Final do Projeto (Digital) Organizada: [Localização/Link].</li>
+                              <li>Materiais Brutos Arquivados (Longo Prazo - HD/Nuvem Fria): [Localização].</li>
+                              <li>Versões Finais Vídeos/Áudios Master Arquivadas: [Localização].</li>
+                              <li>Documentação Completa (Contratos, Relatórios, Planilhas) Arquivada: OK.</li>
+                              <li>Projeto Marcado como Concluído no Sistema de Gestão: [Sim/Não].</li>
+                            </ul>
+                          </div>
+                        </details>
+                      </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
       </div> <!-- Fim de #phaseContentContainer -->
 
       <!-- Ferramentas da Produção -->
-      <section class="mt-16 mb-10"> <!-- Aumentei a margem superior -->
+      <section class="mt-16 mb-10">
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-5">Ferramentas da Produção</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <!-- Card Ferramenta: Gestão -->
@@ -394,9 +1140,9 @@
                  </div>
                  <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
                    <ul class="list-disc pl-5 space-y-1">
-                     <li>Google Workspace (Docs, Sheets)</li>
-                     <li>Trello / Asana / Notion (Tarefas)</li>
-                     <li>WhatsApp / Slack (Comunicação)</li>
+                     <li>Google Workspace (Docs, Sheets, Drive)</li>
+                     <li>Notion / Trello / Asana (Tarefas, Cronograma)</li>
+                     <li>Slack / WhatsApp (Comunicação Rápida)</li>
                      <li>Este Guia Prático!</li>
                    </ul>
                  </div>
@@ -414,10 +1160,11 @@
                 </div>
                 <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
                   <ul class="list-disc pl-5 space-y-1">
-                    <li>Câmeras: [Modelo(s)]</li>
-                    <li>Gravadores Áudio: [Modelo(s)]</li>
-                    <li>Software Edição Vídeo: [Software]</li>
-                    <li>Software Edição Áudio (Pós): [Software]</li>
+                    <li>Câmeras: [Ex: Sony FX3, A7S III]</li>
+                    <li>Gravadores Áudio: [Ex: Zoom H6, Sound Devices MixPre]</li>
+                    <li>Software Edição Vídeo: [Ex: DaVinci Resolve, Premiere Pro]</li>
+                    <li>Software Edição Áudio (Pós): [Ex: Pro Tools, Logic Pro, Reaper]</li>
+                    <li>Software Transmissão (se live): [Ex: OBS Studio, vMix]</li>
                   </ul>
                 </div>
               </div>
@@ -434,9 +1181,10 @@
                 </div>
                 <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
                   <ul class="list-disc pl-5 space-y-1">
-                    <li>Canva / Figma / Adobe Suite</li>
-                    <li>Ferramentas de Gerenciamento Redes Sociais</li>
-                    <li>Plataformas Distribuição (YT, Spotify)</li>
+                    <li>Figma / Adobe Suite (Illustrator, Photoshop)</li>
+                    <li>Canva (Artes rápidas, Social Media)</li>
+                    <li>Ferramentas Gerenciamento Redes Sociais (Buffer, mLabs)</li>
+                    <li>Plataformas Distribuição (YT Studio, Spotify for Podcasters)</li>
                   </ul>
                 </div>
               </div>
@@ -448,14 +1196,15 @@
                   </div>
                   <div>
                     <h4 class="font-medium text-gray-800 dark:text-gray-100">Financeiro</h4>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Controle de custos</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Controle de custos e pagamentos</p>
                   </div>
                 </div>
                 <div class="mt-3 text-sm text-gray-700 dark:text-gray-300">
                   <ul class="list-disc pl-5 space-y-1">
                     <li>Planilhas (Google Sheets, Excel)</li>
-                    <li>Software gestão financeira (se houver)</li>
-                    <li>Controle de pagamentos / recebimentos</li>
+                    <li>Software gestão financeira (Conta Azul, Nibo - se aplicável)</li>
+                    <li>Controle de pagamentos / recebimentos (Planilha, Software)</li>
+                    <li>Gestão de Notas Fiscais / Recibos</li>
                   </ul>
                 </div>
               </div>
@@ -468,16 +1217,17 @@
         <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Anotações da Session #<span id="sessionNumberNotesTitle">?</span></h3>
         <div>
           <label for="projectNotes" class="sr-only">Anotações da Session</label>
-          <textarea id="projectNotes" name="projectNotes" rows="5"
+          <textarea id="projectNotes" name="projectNotes" rows="6"
                     class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm
                            bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100
                            focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)] focus:border-[var(--brand-primary)]
                            text-sm placeholder-gray-400 dark:placeholder-gray-500"
-                    placeholder="Adicione suas ideias, pendências, contatos importantes e próximos passos específicos para esta session..."
-                    aria-label="Anotações da Session"></textarea> <!-- aria-label simplificado, contexto dado pelo h3 -->
+                    placeholder="Adicione suas ideias, pendências, contatos importantes, riscos, feedback rápido pós-evento e próximos passos específicos para esta session..."
+                    aria-label="Anotações da Session"></textarea>
         </div>
         <div class="flex justify-end items-center mt-3 gap-4">
-            <p id="notesStatus" class="text-xs text-gray-500 dark:text-gray-400 h-4 flex-grow"></p> <!-- Status save via JS -->
+            <!-- Status save via JS -->
+            <p id="notesStatus" class="text-xs text-gray-500 dark:text-gray-400 h-4 flex-grow"></p>
             <button id="saveNotes"
                     class="px-4 py-2 text-sm font-medium rounded-md transition-opacity flex items-center gap-2 whitespace-nowrap
                            bg-gray-800 text-white hover:bg-gray-700
@@ -498,12 +1248,12 @@
         </div>
         <div class="bg-yellow-50 dark:bg-gray-800 border border-yellow-200 dark:border-gray-700 rounded-lg p-5 text-sm text-gray-700 dark:text-gray-300 shadow-sm">
           <ul class="space-y-3">
-            <!-- Uso de <strong> para ênfase semântica -->
-            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">01</span><span><strong>Comunicação é chave:</strong> Mantenha a equipe, artistas e local alinhados sempre. Overcommunicate!</span></li>
-            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">02</span><span><strong>Checklists salvam vidas:</strong> Use as VTs e testes para evitar surpresas no dia da gravação.</span></li>
-            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">03</span><span><strong>Plano B (e C):</strong> Tenha contingências claras para riscos técnicos, logísticos e até de pessoal.</span></li>
-            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">04</span><span><strong>Documente TUDO:</strong> Orçamentos, acordos, cronogramas e, principalmente, <strong>lições aprendidas</strong>.</span></li>
-            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">05</span><span><strong>Celebre as vitórias:</strong> Reconheça o esforço da equipe após cada session bem-sucedida!</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">01</span><span><strong>Comunicação é chave:</strong> Mantenha a equipe, artistas e local alinhados SEMPRE. Overcommunicate!</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">02</span><span><strong>Checklists salvam vidas:</strong> Use as VTs, testes e este guia para evitar surpresas no dia D.</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">03</span><span><strong>Plano B (e C):</strong> Tenha contingências claras para riscos técnicos, logísticos, de pessoal e até climáticos.</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">04</span><span><strong>Documente TUDO:</strong> Orçamentos, acordos, cronogramas, decisões e, principalmente, <strong>lições aprendidas</strong> (Pós-Mortem).</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">05</span><span><strong>Foco na Qualidade:</strong> Desde a pré até a pós, a qualidade técnica e artística é o diferencial do Sons e Afins.</span></li>
+            <li class="flex gap-3 items-start"><span class="text-yellow-600 dark:text-yellow-400 font-semibold w-6 flex-shrink-0 pt-0.5">06</span><span><strong>Celebre as vitórias:</strong> Reconheça o esforço da equipe após cada etapa e ao final da session!</span></li>
           </ul>
         </div>
       </section>
@@ -513,7 +1263,7 @@
     <footer class="text-center text-sm text-gray-500 dark:text-gray-400 mt-12 border-t border-gray-200 dark:border-gray-700 pt-6">
       <p>Guia de Produção Interno - Sons e Afins</p>
       <!-- Conteúdo dinâmico -->
-      <p>Versão <span id="appVersion">[Versão Atual]</span> - Atualizado em <span id="lastUpdated">[Data Atualização]</span></p>
+      <p>Versão <span id="appVersion">1.0.0</span> - Atualizado em <span id="lastUpdated">DD/MM/AAAA</span></p>
     </footer>
   </div>
 
