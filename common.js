@@ -1,5 +1,3 @@
---- START OF FILE common.js ---
-
 // --- Constantes Compartilhadas ---
 const LS_KEY_THEME = 'themePreference';
 const LS_KEY_SESSION_INDEX = 'session_index'; // Armazena [{id, name, createdAt}, ...]
@@ -242,4 +240,3 @@ function getCurrentSessionIdFromUrl() {
     // Retorna null se não encontrar ou for vazio, para forçar redirecionamento na página da session
     return urlSessionId && urlSessionId.trim() !== '' ? urlSessionId.trim() : null;
 }
---- END OF FILE common.js ---
