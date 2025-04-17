@@ -1,13 +1,15 @@
+--- START OF FILE dashboard.js ---
+
 document.addEventListener('DOMContentLoaded', () => {
     const sessionListContainer = document.getElementById('sessionList');
     const createSessionBtn = document.getElementById('createSessionBtn');
     const noSessionsMessage = document.getElementById('noSessionsMessage');
+    const themeToggleButton = document.getElementById('themeToggle'); // Adicionado para tema
 
     // --- Funções da Dashboard ---
 
     /** Renderiza a lista de sessions existentes */
     function renderSessionList() {
-        // Verifica se os elementos existem antes de prosseguir
         if (!sessionListContainer || !noSessionsMessage) {
             console.error("Dashboard elements not found (sessionList or noSessionsMessage).");
             return;
@@ -18,19 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (sessions.length === 0) {
             noSessionsMessage.classList.remove('hidden');
-            sessionListContainer.innerHTML = '';
         } else {
             noSessionsMessage.classList.add('hidden');
             const fragment = document.createDocumentFragment();
-            // Ordena por data de criação, mais recente primeiro
-            sessions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            sessions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Mais recentes primeiro
 
             sessions.forEach(session => {
-                const li = document.createElement('div');
-                // Adiciona data-session-id para fácil exclusão (opcional)
-                li.dataset.sessionId = session.id;
-                li.className = 'session-item p-4 bg-white dark:bg-gray-700 rounded-md shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-lg hover:border-[var(--brand-primary)] dark:hover:border-[var(--brand-primary)] transition duration-200 flex justify-between items-center gap-2';
-                li.innerHTML = `
+                const sessionElement = document.createElement('div');
+                sessionElement.dataset.sessionId = session.id; // Adiciona ID para referência
+                sessionElement.className = 'session-item p-4 bg-white dark:bg-gray-700 rounded-md shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-lg hover:border-[var(--brand-primary)] dark:hover:border-[var(--brand-primary)] transition duration-200 flex justify-between items-center gap-2';
+
+                sessionElement.innerHTML = `
                     <a href="session.html?session=${session.id}" class="font-medium text-[var(--brand-primary)] hover:underline flex-grow mr-4 truncate" title="${session.name || `Session #${session.id}`}">
                         ${session.name || `Session #${session.id}`}
                     </a>
@@ -39,14 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     </span>
                      <button class="delete-session-from-dashboard-btn p-1 text-red-500 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/50 rounded-full flex-shrink-0" title="Excluir esta session">
                         <i data-lucide="trash-2" class="w-4 h-4 pointer-events-none"></i>
+                        <span class="sr-only">Excluir</span>
                      </button>
                     `;
-                fragment.appendChild(li);
+                fragment.appendChild(sessionElement);
             });
             sessionListContainer.appendChild(fragment);
-             // Reativa ícones Lucide após adicionar botões de exclusão
+
+            // Reativa ícones Lucide APÓS adicionar os botões à lista
             if (typeof lucide !== 'undefined') {
-                try { lucide.createIcons(); } catch(e){ console.error(e); }
+                try { lucide.createIcons(); } catch(e){ console.error("Lucide error on renderSessionList:", e); }
             }
         }
     }
@@ -55,11 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
      function deleteSessionFromDashboard(button) {
          const sessionItem = button.closest('.session-item');
          const sessionId = sessionItem?.dataset.sessionId;
+         if (!sessionId) {
+            console.error("Could not find session ID for deletion.");
+            showToast('Erro ao encontrar ID da session.', 'error');
+            return;
+         }
+
          const sessions = getAllSessions();
          const sessionToDelete = sessions.find(s => s.id === sessionId);
 
          if (!sessionToDelete) {
-             alert("Erro: Session não encontrada para exclusão.");
+             showToast("Erro: Session não encontrada para exclusão.", 'error');
              return;
          }
 
@@ -75,11 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
                  localStorage.removeItem(`${LS_KEY_NOTES_PREFIX}${sessionId}`);
              } catch (e) {
                  console.error(`Error removing data for deleted session ${sessionId}:`, e);
-                 alert('Erro ao remover dados da session excluída!');
+                 showToast('Erro ao remover dados da session excluída!', 'error');
              }
 
-             alert(`Session "${sessionToDelete.name}" excluída.`);
-             renderSessionList(); // Atualiza a lista
+             showToast(`Session "${sessionToDelete.name}" excluída.`, 'success');
+             renderSessionList(); // Atualiza a lista na UI
          }
      }
 
@@ -87,16 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
     /** Cria uma nova session */
     function createNewSession() {
         const sessionName = prompt("Digite o nome para a nova Session (ex: Session #3 - Evento Z):");
+        if (sessionName === null) return; // Usuário cancelou
         if (!sessionName || sessionName.trim() === '') {
-            // Não mostra alerta se o usuário simplesmente cancelar
-            if (sessionName !== null) {
-                 alert("Nome da session inválido.");
-            }
-            return;
+             showToast("Nome da session inválido.", 'error');
+             return;
         }
 
         const sessions = getAllSessions();
-        const newSessionId = `${Date.now()}-${Math.random().toString(36).substring(2, 7)}`;
+        // Cria um ID mais robusto combinando timestamp e aleatório
+        const newSessionId = `${Date.now()}-${crypto.randomUUID().substring(0, 8)}`;
 
         const newSessionData = {
             id: newSessionId,
@@ -110,14 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Inicializa os dados da nova session (tarefas e notas)
         // Garante que defaultTasksTemplate esteja definido (de common.js)
         if(typeof defaultTasksTemplate !== 'undefined') {
-            const initialTasks = defaultTasksTemplate.map(task => ({ ...task, id: crypto.randomUUID(), completed: false }));
+            // Gera tarefas com IDs únicos baseados no template
+            const initialTasks = defaultTasksTemplate.map(task => ({
+                ...task,
+                id: crypto.randomUUID(),
+                completed: false
+            }));
             saveSessionTasks(newSessionId, initialTasks); // Salva tarefas (de common.js)
-            saveSessionNotes(newSessionId, ''); // Salva notas vazias (de common.js)
+            saveSessionNotes(newSessionId, []); // Salva array de notas VAZIO (de common.js)
             console.log(`Session "${sessionName}" created with ID: ${newSessionId}`);
+            showToast(`Session "${sessionName}" criada!`, 'success');
             renderSessionList(); // Atualiza a lista na dashboard
         } else {
             console.error("defaultTasksTemplate is not defined. Cannot initialize new session tasks.");
-            alert("Erro: Template de tarefas não encontrado. Nova session criada sem tarefas.");
+            showToast("Erro: Template de tarefas não encontrado. Session criada sem tarefas.", 'error');
              renderSessionList(); // Atualiza lista mesmo assim
         }
     }
@@ -125,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Inicialização da Dashboard ---
     function initializeDashboard() {
         console.log("Initializing Dashboard...");
+        loadTheme(); // Carrega tema preferido
         renderSessionList(); // Renderiza a lista inicial
 
         // Listener para o botão de criar
@@ -134,9 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
              console.error("Create Session Button not found.");
         }
 
-         // Listener para botões de excluir na lista (delegação)
+         // Listener para botões de excluir na lista (delegação de evento)
          if (sessionListContainer) {
              sessionListContainer.addEventListener('click', (event) => {
+                 // Verifica se o clique foi no botão ou no ícone dentro dele
                  const deleteButton = event.target.closest('.delete-session-from-dashboard-btn');
                  if (deleteButton) {
                      deleteSessionFromDashboard(deleteButton);
@@ -144,8 +159,18 @@ document.addEventListener('DOMContentLoaded', () => {
              });
          }
 
-         // Atualiza o rodapé (se existir)
+         // Listener para o botão de tema
+         if (themeToggleButton) {
+            themeToggleButton.addEventListener('click', toggleTheme);
+         }
+
+         // Atualiza o rodapé
          updateFooterInfo(); // Função de common.js
+
+         // Inicializa Lucide Ícones (se já não foi feito pelo HTML)
+         if (typeof lucide !== 'undefined') {
+             try { lucide.createIcons(); } catch (e) { console.error("Lucide error on dashboard init:", e); }
+         }
 
         console.log("Dashboard initialized.");
     }
@@ -153,3 +178,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Executa a inicialização da dashboard
     initializeDashboard();
 });
+--- END OF FILE dashboard.js ---
