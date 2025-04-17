@@ -1,168 +1,64 @@
-/* Definição da Cor Primária da Marca - AJUSTE AQUI */
-:root {
-  --brand-primary: #8B5CF6; /* Exemplo: Roxo Tailwind purple-500 */
-  --brand-primary-darker: #7c3aed; /* Exemplo: purple-600 para hover/focus */
-}
+/* :root e body (mantidos) */
+:root { --brand-primary: #8B5CF6; --brand-primary-darker: #7c3aed; }
+body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-/* Estilos base mínimos */
-body {
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Cores e transição base aplicadas via classes Tailwind no body e html */
-}
-
-/* Estilos Componentes Específicos */
-
-/* Botões de Navegação por Fase */
-.phase-nav-btn.active {
-  background-color: var(--brand-primary);
-  color: white;
-  font-weight: 600;
-}
-.dark .phase-nav-btn.active {
-  background-color: var(--brand-primary);
-  color: white;
-}
-/* Foco visível consistente e acessível */
-.phase-nav-btn:focus-visible,
-button:focus-visible,
-summary:focus-visible,
-input[type="checkbox"]:focus-visible,
-textarea:focus-visible,
-a:focus-visible {
-    outline: 3px solid var(--brand-primary-darker);
-    outline-offset: 2px;
-    border-radius: 0.375rem; /* Tailwind's rounded-md */
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3);
-}
-textarea:focus-visible, input[type="checkbox"]:focus-visible {
-     box-shadow: none;
-}
+/* Foco Visível Global (mantido) */
+button:focus-visible, summary:focus-visible, input[type="checkbox"]:focus-visible,
+textarea:focus-visible, a:focus-visible { outline: 3px solid var(--brand-primary-darker); outline-offset: 2px; border-radius: 0.375rem; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.3); }
+textarea:focus-visible, input[type="checkbox"]:focus-visible { box-shadow: none; }
+.phase-nav-btn:focus-visible { border-radius: 0.5rem; } /* Ajuste específico */
 
 
-/* Cards de Tarefa - Efeito ao completar (via classe JS) */
-.task-card.task-completed {
-    background-color: #f9fafb;
-    border-color: #e5e7eb;
-    opacity: 0.75;
-}
-.task-card.task-completed label,
-.task-card.task-completed p,
-.task-card.task-completed details summary,
-.task-card.task-completed details div,
-.task-card.task-completed ul {
-  text-decoration: line-through;
-  text-decoration-color: #9ca3af;
-  color: #6b7280;
-  opacity: 0.85;
-}
-/* Dark Mode - Tarefa Completa */
-.dark .task-card.task-completed {
-    background-color: #374151;
-    border-color: #4b5563;
-    opacity: 0.65;
-}
-.dark .task-card.task-completed label,
-.dark .task-card.task-completed p,
-.dark .task-card.task-completed details summary,
-.dark .task-card.task-completed details div,
-.dark .task-card.task-completed ul {
-    text-decoration-color: #6b7280;
-    color: #9ca3af;
-    opacity: 0.85;
-}
+/* Botões de Navegação por Fase (mantido) */
+.phase-nav-btn.active { background-color: var(--brand-primary); color: white; font-weight: 600; }
+.dark .phase-nav-btn.active { background-color: var(--brand-primary); color: white; }
 
+/* Cards de Tarefa - Efeito ao completar (mantido) */
+.task-card.task-completed { background-color: #f9fafb; border-color: #e5e7eb; opacity: 0.75; }
+.task-card.task-completed label, .task-card.task-completed p, .task-card.task-completed details summary,
+.task-card.task-completed details div, .task-card.task-completed ul { text-decoration: line-through; text-decoration-color: #9ca3af; color: #6b7280; opacity: 0.85; }
+.dark .task-card.task-completed { background-color: #374151; border-color: #4b5563; opacity: 0.65; }
+.dark .task-card.task-completed label, .dark .task-card.task-completed p, .dark .task-card.task-completed details summary,
+.dark .task-card.task-completed details div, .dark .task-card.task-completed ul { text-decoration-color: #6b7280; color: #9ca3af; opacity: 0.85; }
 
-/* Checkbox da Tarefa */
-.task-checkbox {
-  width: 1.25rem; height: 1.25rem; border-radius: 0.25rem;
-  border: 2px solid #9ca3af;
-  background-color: white;
-  cursor: pointer;
-  flex-shrink: 0;
-  vertical-align: middle;
-  margin-top: 0.125rem;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  /* Usar accent-color para cor do check */
-  accent-color: var(--brand-primary);
-  /* Garantir aparência nativa para accent-color funcionar bem */
-  appearance: checkbox;
-  -webkit-appearance: checkbox;
-}
-.dark .task-checkbox {
-    border-color: #6b7280;
-    background-color: #4b5563; /* Fundo no dark mode */
-}
-/* Estilos :checked não são necessários se accent-color funciona */
+/* Checkbox da Tarefa (mantido com accent-color) */
+.task-checkbox { width: 1.25rem; height: 1.25rem; border-radius: 0.25rem; border: 2px solid #9ca3af; background-color: white; cursor: pointer; flex-shrink: 0; vertical-align: middle; margin-top: 0.125rem; transition: background-color 0.2s, border-color 0.2s; accent-color: var(--brand-primary); appearance: checkbox; -webkit-appearance: checkbox; }
+.dark .task-checkbox { border-color: #6b7280; background-color: #4b5563; }
 
-
-/* Estilo para <details> e <summary> */
-summary {
-  list-style: none;
-  padding: 0.25rem 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  transition: color 0.2s ease;
-}
+/* Details / Summary (mantido) */
+summary { list-style: none; padding: 0.25rem 0; cursor: pointer; display: inline-flex; align-items: center; transition: color 0.2s ease; }
 summary::-webkit-details-marker, summary::marker { display: none; }
-summary .details-chevron {
-  margin-left: 0.25rem;
-  transition: transform 0.2s ease-in-out;
-}
-details[open] > summary .details-chevron {
-  transform: rotate(180deg);
-}
-/* Estilo para o conteúdo dentro de details (Tailwind prose aplicado no HTML) */
-details > div.details-content {
-  line-height: 1.6;
-}
+summary .details-chevron { margin-left: 0.25rem; transition: transform 0.2s ease-in-out; }
+details[open] > summary .details-chevron { transform: rotate(180deg); }
+details > div.details-content { line-height: 1.6; }
 
-
-/* Botões de Ação Dentro do Card */
-.edit-task-details-btn, .delete-task-btn {
-    background: none; border: none; padding: 0.1rem 0.3rem; margin: 0;
-    cursor: pointer; font-size: 0.75rem; line-height: 1rem;
-    transition: background-color 0.2s, color 0.2s; border-radius: 0.25rem;
-    display: inline-flex; align-items: center; gap: 0.2rem;
-    margin-top: 0.5rem; /* Espaço acima dos botões */
-}
-.edit-task-details-btn:hover, .delete-task-btn:hover {
-    text-decoration: underline;
-}
-.edit-task-details-btn {
-   color: var(--brand-primary);
-   /* margin-left: -0.3rem; /* Removido ajuste */
-}
-.delete-task-btn {
-    color: #ef4444; /* red-500 */
-}
-.dark .delete-task-btn { color: #f87171; /* red-400 */ }
+/* Botões de Ação Dentro do Card (mantido) */
+.edit-task-details-btn, .delete-task-btn { background: none; border: none; padding: 0.1rem 0.3rem; margin: 0; cursor: pointer; font-size: 0.75rem; line-height: 1rem; transition: background-color 0.2s, color 0.2s; border-radius: 0.25rem; display: inline-flex; align-items: center; gap: 0.2rem; margin-top: 0.5rem; }
+.edit-task-details-btn:hover, .delete-task-btn:hover { text-decoration: underline; }
+.edit-task-details-btn { color: var(--brand-primary); }
+.delete-task-btn { color: #ef4444; }
+.dark .delete-task-btn { color: #f87171; }
 .edit-task-details-btn:hover { background-color: rgba(139, 92, 246, 0.1); }
 .delete-task-btn:hover { background-color: rgba(239, 68, 68, 0.1); }
 
+/* Barra de Progresso (mantido) */
+#progressBar { background-color: var(--brand-primary); transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-radius: 9999px; }
 
-/* Barra de Progresso */
-#progressBar {
-  background-color: var(--brand-primary);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border-radius: 9999px;
-}
+/* Ícones Lucide (mantido) */
+[data-lucide] { display: inline-block; width: 1em; height: 1em; vertical-align: -0.15em; stroke-width: 2; }
 
-/* Ajuste para Ícones Lucide */
-[data-lucide] {
-    display: inline-block; width: 1em; height: 1em;
-    vertical-align: -0.15em; stroke-width: 2;
-}
-
-/* Classe Utilitária Sr Only */
-.sr-only { /* ... (código anterior) ... */ }
+/* Utilitários e Placeholders (mantido) */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
 .phase-content.hidden { display: none; }
 .task-list-placeholder { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+.prose-a\:text-\[\var\(--brand-primary\)\] a { color: var(--brand-primary) !important; }
 
-/* Garante que o prose não afete a cor primária dos links dentro dos detalhes */
-.prose-a\:text-\[\var\(--brand-primary\)\] a {
-    color: var(--brand-primary) !important;
-}
+/* Estilos Tarefas Excluídas */
+.deleted-task-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; background-color: rgba(107, 114, 128, 0.1); border-radius: 0.375rem; border: 1px solid transparent; }
+.dark .deleted-task-item { background-color: rgba(75, 85, 99, 0.2); }
+.deleted-task-item span { font-size: 0.875rem; color: #6b7280; text-decoration: line-through; opacity: 0.8; margin-right: 1rem; /* Espaço para botão */}
+.dark .deleted-task-item span { color: #9ca3af; }
+.restore-task-btn { background: none; border: none; padding: 0.1rem 0.3rem; margin: 0; cursor: pointer; font-size: 0.75rem; line-height: 1rem; transition: background-color 0.2s, color 0.2s; border-radius: 0.25rem; display: inline-flex; align-items: center; gap: 0.2rem; color: #10b981; flex-shrink: 0; /* Evita que o botão encolha */ }
+.dark .restore-task-btn { color: #34d399; }
+.restore-task-btn:hover { text-decoration: underline; background-color: rgba(16, 185, 129, 0.1); }
