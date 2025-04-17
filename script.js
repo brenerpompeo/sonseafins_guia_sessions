@@ -1,5 +1,3 @@
---- START OF FILE script.js ---
-
 document.addEventListener('DOMContentLoaded', () => {
     // --- Seletores Globais ---
     const themeToggleButton = document.getElementById('themeToggle');
@@ -623,4 +621,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 }); // Fim do DOMContentLoaded
---- END OF FILE script.js ---
