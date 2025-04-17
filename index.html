@@ -1,5 +1,7 @@
+--- START OF FILE index.html ---
+
 <!DOCTYPE html>
-<html lang="pt-BR" class=""> <!-- Classe 'dark' opcional, pode ser gerenciada por JS -->
+<html lang="pt-BR" class=""> <!-- Classe 'dark' gerenciada por JS -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +16,7 @@
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
     <div class="container mx-auto max-w-2xl px-4 py-12">
 
-        <header class="mb-10 text-center">
+        <header class="mb-10 text-center relative">
              <div class="flex items-center justify-center gap-3 mb-4">
                 <img src="logo_sons_afins.svg" alt="Sons e Afins Logo" width="50" height="50" class="w-12 h-12">
                  <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -22,8 +24,8 @@
                  </h1>
              </div>
             <p class="text-gray-600 dark:text-gray-400">Gerencie suas gravações e checklists.</p>
-             <!-- Botão de Tema (Opcional na Dashboard) -->
-            <div class="absolute top-4 right-4">
+             <!-- Botão de Tema -->
+            <div class="absolute top-0 right-0">
                  <button id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema" class="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--brand-primary)] focus:ring-offset-gray-100 dark:focus:ring-offset-gray-900 transition-colors">
                    <i data-lucide="sun" class="icon-sun block dark:hidden w-5 h-5" aria-hidden="true"></i>
                    <i data-lucide="moon" class="icon-moon hidden dark:block w-5 h-5" aria-hidden="true"></i>
@@ -52,7 +54,8 @@
         </main>
 
         <footer class="text-center text-sm text-gray-500 dark:text-gray-400 mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <p>Sons e Afins © <span id="currentYear"></span></p>
+            <p>Sons e Afins © <span id="currentYear">2024</span></p>
+            <p>Versão <span id="appVersion">1.2.0</span></p>
         </footer>
 
     </div>
@@ -60,26 +63,6 @@
     <!-- Scripts: Common ANTES de Dashboard -->
     <script src="common.js" defer></script>
     <script src="dashboard.js" defer></script>
-     <script>
-        // Pequeno script inline para inicializar Lucide e ano na dashboard
-        // (LoadTheme de common.js cuidará do tema se o botão existir)
-        document.addEventListener('DOMContentLoaded', () => {
-             if (typeof lucide !== 'undefined') {
-                 try { lucide.createIcons(); } catch(e){ console.error(e); }
-             }
-             const yearSpan = document.getElementById('currentYear');
-             if(yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-             // Adiciona listener ao botão de tema se ele existir
-             const themeBtn = document.getElementById('themeToggle');
-             if(themeBtn && typeof toggleTheme === 'function') { // Verifica se a função existe (de common.js)
-                themeBtn.addEventListener('click', toggleTheme);
-             }
-             // Carrega o tema inicial
-             if(typeof loadTheme === 'function') {
-                 loadTheme();
-             }
-        });
-    </script>
 </body>
 </html>
+--- END OF FILE index.html ---
